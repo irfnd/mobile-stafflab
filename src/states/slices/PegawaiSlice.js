@@ -2,14 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	pegawai: null,
+	dataPribadi: null,
+	pendidikan: null,
+	dokumen: null,
+	mutasi: null,
+	cuti: null,
 };
 
 const PegawaiSlice = createSlice({
 	name: "pegawai",
 	initialState,
 	reducers: {
-		setPegawai: (state, action) => {
-			state.pegawai = action.payload;
+		set: (state, action) => {
+			const key = Object.keys(action.payload)[0];
+			const value = Object.values(action.payload)[0];
+			state[key] = value;
 		},
 		reset: () => initialState,
 	},
