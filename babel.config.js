@@ -15,6 +15,6 @@ module.exports = function (api) {
 	api.cache(true);
 	return {
 		presets: ["babel-preset-expo"],
-		plugins: [["module-resolver", moduleResolver], "transform-inline-environment-variables"],
+		plugins: [["module-resolver", moduleResolver], "react-native-reanimated/plugin", "transform-inline-environment-variables"],
 	};
 };

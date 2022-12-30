@@ -1,3 +1,7 @@
+import "react-native-reanimated";
+import "react-native-gesture-handler";
+
+// Custom Hooks
 import useAuth from "helpers/hooks/useAuth";
 import useSplashScreen from "helpers/hooks/useSplashScreen";
 

@@ -1,5 +1,6 @@
 // Styles & Icons
 import { Feather } from "@expo/vector-icons";
+import { X } from "lucide-react-native";
 import { Alert, Box, HStack, Icon, IconButton, Text, VStack } from "native-base";
 
 export default function BaseAlert({ props }) {
@@ -20,7 +21,7 @@ export default function BaseAlert({ props }) {
 				{isCloseable && (
 					<IconButton
 						variant='unstyled'
-						icon={<Icon as={<Feather name='x' />} size='xl' color='gray.900' />}
+						icon={<Icon as={<X size={28} />} color='gray.900' />}
 						_focus={{ borderWidth: 0 }}
 						onPress={() => toast?.close(id)}
 					/>

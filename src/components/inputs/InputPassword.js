@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 // Styles & Icons
-import { Icon, Input, FormControl, Pressable, useColorModeValue } from "native-base";
-import { Feather } from "@expo/vector-icons";
+import { Eye, EyeOff } from "lucide-react-native";
+import { FormControl, Icon, Input, Pressable, useColorModeValue } from "native-base";
 
 export default function InputPassword(props) {
 	const { name, label = null, placeholder, size, isRequired = false } = props;
@@ -52,7 +52,7 @@ function EyeIcon({ handler }) {
 	const { showPass, setShowPass } = handler;
 	return (
 		<Pressable onPress={() => setShowPass(!showPass)}>
-			<Icon as={<Feather name={showPass ? "eye-off" : "eye"} />} size={6} mx={4} color='cyan.500' />
+			<Icon as={showPass ? <EyeOff size={24} /> : <Eye size={24} />} mx={4} color='cyan.500' />
 		</Pressable>
 	);
 }

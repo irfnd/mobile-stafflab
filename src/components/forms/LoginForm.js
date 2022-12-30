@@ -6,7 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
 
 // Styles & Icons
-import { Feather } from "@expo/vector-icons";
+import { LogIn } from "lucide-react-native";
 import { Button, Icon, VStack, useToast } from "native-base";
 
 // Components
@@ -77,7 +77,7 @@ export default function LoginForm() {
 					colorScheme='cyan'
 					rounded='md'
 					mt={4}
-					leftIcon={<Icon as={<Feather name='log-in' />} size='sm' mr={2} />}
+					leftIcon={<Icon as={<LogIn size={20} />} mr={2} />}
 					_text={{ fontWeight: "semibold" }}
 					_spinner={{ height: 5 }}
 					onPress={mainForm.handleSubmit(onLogin)}
