@@ -1,19 +1,18 @@
 // Styles & Icons
-import { Flex, ScrollView, VStack, useColorModeValue } from "native-base";
+import { Flex, ScrollView, VStack } from "native-base";
 
 // Components
-import GreetingCard from "components/cards/GreetingCard";
+import ProfilCard from "components/cards/ProfilCard";
+import MenuList from "components/lists/MenuList";
 import BaseStagger from "components/staggers/BaseStagger";
 
 export default function Home() {
-	// Color Mode
-	const bgContainer = useColorModeValue("gray.100", "trueGray.900");
-
 	return (
-		<Flex bg={bgContainer} h='full' safeAreaTop>
+		<Flex bg='trueGray.100' h='full' safeAreaTop _dark={{ bg: "trueGray.900" }}>
 			<ScrollView>
 				<VStack bg='transparent' h='full' space={4} p={8}>
-					<GreetingCard />
+					<ProfilCard />
+					<MenuList />
 				</VStack>
 			</ScrollView>
 			<BaseStagger />
