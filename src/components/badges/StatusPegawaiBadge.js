@@ -4,7 +4,7 @@ import { Badge, HStack, Icon, Text, useColorModeValue } from "native-base";
 
 export default function StatusPegawaiBadge({ status }) {
 	// Style Hooks
-	const bgBadgeAktif = useColorModeValue("success.500", "success.500:alpha.70");
+	const bgBadgeAktif = useColorModeValue("cyan.500", "cyan.500:alpha.70");
 	const bgBadgeCuti = useColorModeValue("warning.500", "warning.500:alpha.70");
 	const bgBadgePensiun = useColorModeValue("muted.500", "muted.500:alpha.70");
 	const bgBadgePhk = useColorModeValue("error.500", "error.500:alpha.70");

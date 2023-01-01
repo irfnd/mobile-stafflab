@@ -12,7 +12,7 @@ export default function BaseStagger() {
 
 	return (
 		<>
-			<Box alignSelf='flex-end' postition='absolute' right={6} bottom='86px'>
+			<Box alignSelf='flex-end' postition='absolute' right={8} bottom='94px'>
 				<Stagger
 					visible={isOpen}
 					initial={{ opacity: 0, scale: 0, translateY: 34 }}
@@ -60,8 +60,8 @@ export default function BaseStagger() {
 				colorScheme='cyan'
 				renderInPortal={false}
 				placement='bottom-right'
-				right={6}
-				bottom={6}
+				right={8}
+				bottom={8}
 				icon={<Icon color='white' as={isOpen ? <X /> : <Menu />} size={6} />}
 				shadow={2}
 				onPress={onToggle}

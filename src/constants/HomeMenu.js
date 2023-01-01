@@ -1,10 +1,10 @@
 const HomeMenu = [
-	{ image: null, text: "Data Pribadi" },
-	{ image: null, text: "Kontak & Akun" },
-	{ image: null, text: "Pendidikan" },
-	{ image: null, text: "Mutasi" },
-	{ image: null, text: "Cuti" },
-	{ image: null, text: "Lamaran" },
+	{ image: null, text: "Data Pribadi", screen: "DataPribadi" },
+	{ image: null, text: "Kontak & Akun", screen: "KontakAkun" },
+	{ image: null, text: "Pendidikan", screen: "Pendidikan" },
+	{ image: null, text: "Mutasi", screen: "Mutasi" },
+	{ image: null, text: "Cuti", screen: "Cuti" },
+	{ image: null, text: "Lamaran", screen: "Lamaran" },
 ];
 
 export default HomeMenu;
