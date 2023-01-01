@@ -14,7 +14,7 @@ export default function RecentCutiCard() {
 					Riwayat Cuti
 				</Text>
 				<Link _text={{ color: "cyan.500" }} onPress={() => navigation.navigate("Cuti")}>
-					<Icon as={<ChevronRight size={30} />} color='cyan.500' />
+					<Icon as={<ChevronRight size={20} />} color='cyan.500' />
 				</Link>
 			</HStack>
 			<Flex

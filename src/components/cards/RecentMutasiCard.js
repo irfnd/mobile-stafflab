@@ -14,7 +14,7 @@ export default function RecentMutasiCard() {
 					Riwayat Mutasi
 				</Text>
 				<Link _text={{ color: "cyan.500" }} onPress={() => navigation.navigate("Mutasi")}>
-					<Icon as={<ChevronRight size={30} />} color='cyan.500' />
+					<Icon as={<ChevronRight size={20} />} color='cyan.500' />
 				</Link>
 			</HStack>
 			<Flex

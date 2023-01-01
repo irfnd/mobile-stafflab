@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 // Styles & Icons
 import { FileKey2 } from "lucide-react-native";
-import { Box, Flex, HStack, Icon, Pressable, ScrollView, Skeleton, Text, VStack } from "native-base";
+import { Box, Flex, HStack, Icon, Pressable, ScrollView, Skeleton, Text, VStack, ZStack } from "native-base";
 
 // Constants
 import HomeMenu from "constants/HomeMenu";
@@ -23,17 +23,16 @@ export default function MenuList() {
 								bg='white'
 								alignItems='center'
 								justifyContent='center'
-								boxSize={110}
+								boxSize={120}
 								rounded='lg'
-								p={2}
 								borderWidth={1}
 								borderColor='trueGray.300'
 								_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
 							>
 								<Skeleton boxSize='80px' rounded='lg' isLoaded={pegawai}>
-									<VStack alignItems='center' space={2}>
-										<Icon as={<FileKey2 size={45} />} color='cyan.500' />
-										<Text fontSize='xs' fontWeight='semibold'>
+									<VStack alignItems='center' h='full'>
+										<Box>{menu.illustration}</Box>
+										<Text position='absolute' fontSize='xs' fontWeight='semibold' bottom={5}>
 											{menu.text}
 										</Text>
 									</VStack>

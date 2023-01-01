@@ -4,10 +4,11 @@ import { PerusahaanSelector } from "states/slices/PerusahaanSlice";
 
 // Styles & Icons
 import { Building2, Hash, Network, Pocket, UserCheck } from "lucide-react-native";
-import { Avatar, Box, Divider, Flex, HStack, Icon, Skeleton, Text, VStack } from "native-base";
+import { Avatar, Box, Divider, Flex, HStack, Icon, Skeleton, Text, VStack, Image } from "native-base";
 
-// Components
+// Components & Illustration
 import StatusPegawaiBadge from "components/badges/StatusPegawaiBadge";
+import JabatanIllustration from "assets/illustrations/JabatanIllustration.svg";
 
 export default function ProfileCard() {
 	const { pegawai, dokumen } = useSelector(PegawaiSelector);
@@ -128,6 +129,12 @@ export default function ProfileCard() {
 					</VStack>
 				</VStack>
 			</VStack>
+
+			{pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar && (
+				<Flex position='absolute' w={150} bottom={-20} right={0}>
+					<JabatanIllustration width={150} height={150} />
+				</Flex>
+			)}
 		</Flex>
 	);
 }
