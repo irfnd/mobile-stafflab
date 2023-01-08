@@ -1,20 +1,20 @@
-import { useDispatch } from "react-redux";
-import { AuthActions } from "states/slices/AuthSlice";
-
 // Styles & Icons
 import { LogOut, Menu, Moon, Sun, X } from "lucide-react-native";
 import { Box, Fab, Icon, IconButton, Stagger, VStack, useColorMode, useDisclose } from "native-base";
 
+// Components
+import LogoutModal from "components/modals/LogoutModal";
+
 export default function BaseStagger() {
 	const { colorMode, toggleColorMode } = useColorMode();
-	const { isOpen, onToggle, onClose } = useDisclose();
-	const dispatch = useDispatch();
+	const staggerDisclosure = useDisclose();
+	const logoutDisclosure = useDisclose();
 
 	return (
 		<>
 			<Box alignSelf='flex-end' postition='absolute' right={8} bottom='94px'>
 				<Stagger
-					visible={isOpen}
+					visible={staggerDisclosure.isOpen}
 					initial={{ opacity: 0, scale: 0, translateY: 34 }}
 					animate={{
 						translateY: 0,
@@ -35,7 +35,7 @@ export default function BaseStagger() {
 							shadow={2}
 							_pressed={{ bg: colorMode === "light" ? "trueGray.800" : "yellow.800" }}
 							onPress={() => {
-								onClose();
+								staggerDisclosure.onClose();
 								toggleColorMode();
 							}}
 						/>
@@ -49,8 +49,8 @@ export default function BaseStagger() {
 							shadow={2}
 							_pressed={{ bg: "red.800" }}
 							onPress={() => {
-								onClose();
-								dispatch(AuthActions.reset());
+								logoutDisclosure.onOpen();
+								staggerDisclosure.onClose();
 							}}
 						/>
 					</VStack>
@@ -62,10 +62,11 @@ export default function BaseStagger() {
 				placement='bottom-right'
 				right={8}
 				bottom={8}
-				icon={<Icon color='white' as={isOpen ? <X /> : <Menu />} size={6} />}
+				icon={<Icon color='white' as={staggerDisclosure.isOpen ? <X /> : <Menu />} size={6} />}
 				shadow={2}
-				onPress={onToggle}
+				onPress={staggerDisclosure.onToggle}
 			/>
+			<LogoutModal disclosure={logoutDisclosure} />
 		</>
 	);
 }
