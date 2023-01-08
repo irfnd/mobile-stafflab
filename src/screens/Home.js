@@ -13,7 +13,7 @@ export default function Home() {
 	return (
 		<Flex bg='trueGray.100' h='full' safeAreaTop _dark={{ bg: "trueGray.900" }}>
 			<ZStack justifyContent='flex-end' h='full'>
-				<ScrollView h='full'>
+				<ScrollView h='full' w='full'>
 					<VStack h='full' space={8} p={8}>
 						<ProfilCard />
 						<MenuList />

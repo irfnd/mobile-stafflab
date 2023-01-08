@@ -4,11 +4,11 @@ import { PerusahaanSelector } from "states/slices/PerusahaanSlice";
 
 // Styles & Icons
 import { Building2, Hash, Network, Pocket, UserCheck } from "lucide-react-native";
-import { Avatar, Box, Divider, Flex, HStack, Icon, Skeleton, Text, VStack, Image } from "native-base";
+import { Avatar, Box, Divider, Flex, HStack, Icon, Skeleton, Text, VStack } from "native-base";
 
 // Components & Illustration
-import StatusPegawaiBadge from "components/badges/StatusPegawaiBadge";
 import JabatanIllustration from "assets/illustrations/JabatanIllustration.svg";
+import StatusPegawaiBadge from "components/badges/StatusPegawaiBadge";
 
 export default function ProfileCard() {
 	const { pegawai, dokumen } = useSelector(PegawaiSelector);
@@ -18,7 +18,7 @@ export default function ProfileCard() {
 	const divisi = useSelector((state) => PerusahaanSelector.divisi.selectById(state, pegawai?.idDivisi));
 	const jabatan = useSelector((state) => PerusahaanSelector.jabatan.selectById(state, pegawai?.idJabatan));
 	const golongan = useSelector((state) => PerusahaanSelector.golongan.selectById(state, pegawai?.idGolongan));
-	const avatar = dokumen?.filter((el) => el.kategori === "profil")[0];
+	const avatar = dokumen?.filter((file) => file.kategori === "profil")[0];
 
 	return (
 		<Flex
@@ -28,10 +28,7 @@ export default function ProfileCard() {
 			rounded='lg'
 			borderWidth={1}
 			borderColor='trueGray.300'
-			_dark={{
-				bg: "trueGray.800",
-				borderColor: "trueGray.700",
-			}}
+			_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
 		>
 			<VStack w='full' space={4}>
 				<HStack alignItems='center' justifyContent='space-between' w='full'>
