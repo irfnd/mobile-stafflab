@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AuthActions } from "states/slices/AuthSlice";
 
 // Styles & Icons
-import { Button, Modal, Text } from "native-base";
+import { Button, Modal, Text, HStack } from "native-base";
 
 export default function LogoutModal({ disclosure }) {
 	const { isOpen, onClose } = disclosure;
@@ -15,21 +15,21 @@ export default function LogoutModal({ disclosure }) {
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
-			<Modal.Content w='sm'>
-				<Modal.CloseButton />
+			<Modal.Content w='sm' p={4}>
 				<Modal.Header borderColor='transparent'>Logout</Modal.Header>
+				<Modal.CloseButton />
 				<Modal.Body>
 					<Text>Apakah Anda yakin ingin Logout?</Text>
 				</Modal.Body>
 				<Modal.Footer borderColor='transparent'>
-					<Button.Group space={2}>
-						<Button colorScheme='red' onPress={onLogout}>
+					<HStack space={2}>
+						<Button colorScheme='red' w='50%' onPress={onLogout}>
 							Logout
 						</Button>
-						<Button variant='ghost' onPress={onClose}>
+						<Button variant='outline' borderColor='cyan.500' w='50%' onPress={onClose}>
 							Batal
 						</Button>
-					</Button.Group>
+					</HStack>
 				</Modal.Footer>
 			</Modal.Content>
 		</Modal>
