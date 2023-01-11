@@ -72,7 +72,7 @@ export default function LoginForm() {
 				<Input name='password' type='password' label='Password' size='lg' isRequired />
 				<Button
 					isLoading={loading}
-					isLoadingText='Submitting'
+					isLoadingText='Memproses'
 					size='lg'
 					colorScheme='cyan'
 					rounded='md'

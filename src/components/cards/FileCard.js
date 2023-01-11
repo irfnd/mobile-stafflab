@@ -2,22 +2,84 @@ import * as FileSystem from "expo-file-system";
 import { StorageAccessFramework } from "expo-file-system";
 import useCapitalize from "helpers/hooks/useCapitalize";
 import useDate from "helpers/hooks/useDate";
-import { downloadFile } from "helpers/api/PegawaiApi";
+import * as mime from "react-native-mime-types";
+import { useSelector } from "react-redux";
+import { AuthSelector } from "states/slices/AuthSlice";
+import { useState } from "react";
 
 // Styles & Icons
 import { FileBadge, FileClock } from "lucide-react-native";
-import { HStack, Icon, Text, VStack, Button } from "native-base";
+import { Button, HStack, Icon, Text, VStack, useToast } from "native-base";
 
 // Components
+import BaseAlert from "components/alerts/BaseAlert";
 
 export default function FileCard({ file, withBtn = false }) {
-	const onDownload = async (filePath) => {
+	const { session } = useSelector(AuthSelector);
+	const [loading, setLoading] = useState(false);
+
+	const toast = useToast();
+	const fileDir = FileSystem.documentDirectory;
+
+	const saveFile = async (fileUri, fileName) => {
 		try {
-			const downloadFolder = StorageAccessFramework.getUriForDirectoryInRoot("Downloads");
-			console.log(downloadFolder);
+			const fileString = await FileSystem.readAsStringAsync(fileUri, { encoding: FileSystem.EncodingType.Base64 });
+			const downloads = StorageAccessFramework.getUriForDirectoryInRoot("Downloads");
+			const { granted, directoryUri } = await StorageAccessFramework.requestDirectoryPermissionsAsync(downloads);
+			if (!granted) throw new Error("Pilih folder untuk mengunduh file!");
+			const uri = await StorageAccessFramework.createFileAsync(directoryUri, fileName.split(".").shift(), mime.lookup(fileName));
+			await FileSystem.writeAsStringAsync(uri, fileString, { encoding: FileSystem.EncodingType.Base64 });
 		} catch (err) {
-			console.log(err);
+			throw err;
 		}
+	};
+
+	const onDownload = async (path) => {
+		setLoading(true);
+		try {
+			const fileURL = `${process.env.SUPABASE_FILES_URL}/dokumen/${encodeURI(path)}`;
+			const downloadFile = FileSystem.createDownloadResumable(fileURL, fileDir + path.split("/").pop(), {
+				headers: { authorization: `Bearer ${session.access_token}` },
+			});
+			const { uri } = await downloadFile.downloadAsync();
+			await saveFile(uri, path.split("/").pop());
+			toast.show({
+				placement: "top",
+				duration: 3000,
+				render: ({ id }) => (
+					<BaseAlert
+						props={{
+							toast,
+							id,
+							status: "success",
+							variant: "left-accent",
+							title: "Berhasil mengunduh!",
+							description: "File Anda sudah tersimpan.",
+							isCloseable: true,
+						}}
+					/>
+				),
+			});
+		} catch (err) {
+			toast.show({
+				placement: "top",
+				duration: 3000,
+				render: ({ id }) => (
+					<BaseAlert
+						props={{
+							toast,
+							id,
+							status: "error",
+							variant: "left-accent",
+							title: "Gagal mengunduh!",
+							description: err.message,
+							isCloseable: true,
+						}}
+					/>
+				),
+			});
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -42,7 +104,7 @@ export default function FileCard({ file, withBtn = false }) {
 				<Text>{useDate({ date: file?.createdAt, type: "datetime" })}</Text>
 			</HStack>
 			{withBtn && (
-				<Button colorScheme='cyan' mt={2} onPress={() => onDownload(file?.detail?.path)}>
+				<Button isLoading={loading} isLoadingText='Mengunduh' colorScheme='cyan' mt={2} onPress={() => onDownload(file?.detail?.path)}>
 					Unduh Dokumen
 				</Button>
 			)}
