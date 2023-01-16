@@ -101,10 +101,20 @@ export default function FileCard({ file, withBtn = false }) {
 			</HStack>
 			<HStack alignItems='center' space={2}>
 				<Icon as={<FileClock size={16} />} color='cyan.500' />
-				<Text>{useDate({ date: file?.createdAt, type: "datetime" })}</Text>
+				<Text>{useDate({ date: file?.createdAt || file?.uploadedAt, type: "datetime" })}</Text>
 			</HStack>
 			{withBtn && (
-				<Button isLoading={loading} isLoadingText='Mengunduh' colorScheme='cyan' mt={2} onPress={() => onDownload(file?.detail?.path)}>
+				<Button
+					isLoading={loading}
+					isLoadingText='Mengunduh'
+					colorScheme='cyan'
+					variant='outline'
+					borderColor='cyan.500'
+					rounded='md'
+					mt={2}
+					_text={{ fontWeight: "semibold" }}
+					onPress={() => onDownload(file?.detail?.path)}
+				>
 					Unduh Dokumen
 				</Button>
 			)}

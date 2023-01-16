@@ -10,7 +10,14 @@ export default function ButtonKontakAkun() {
 
 	return (
 		<>
-			<Button size='lg' w='full' leftIcon={<Icon as={<Edit size={20} />} mr={2} />} onPress={resetDisclosure.onOpen}>
+			<Button
+				size='lg'
+				w='full'
+				leftIcon={<Icon as={<Edit size={20} />} mr={2} />}
+				rounded='md'
+				_text={{ fontWeight: "semibold" }}
+				onPress={resetDisclosure.onOpen}
+			>
 				Reset Password
 			</Button>
 			<ResetPasswordModal disclosure={resetDisclosure} />

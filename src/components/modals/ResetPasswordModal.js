@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 // Styles & Icons
-import { Button, HStack, Modal } from "native-base";
+import { Button, HStack, VStack, Modal, KeyboardAvoidingView, ScrollView } from "native-base";
 
 // Components
 import ResetPasswordForm from "components/forms/ResetPasswordForm";
@@ -22,35 +22,37 @@ export default function ResetPasswordModal({ disclosure }) {
 	};
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} avoidKeyboard>
-			<Modal.Content w='sm' p={4}>
-				<Modal.Header borderColor='transparent'>Reset Password</Modal.Header>
-				<Modal.CloseButton />
-				<Modal.Body>
-					<FormProvider {...mainForm}>
-						<ResetPasswordForm />
-					</FormProvider>
-				</Modal.Body>
-				<Modal.Footer borderColor='transparent'>
-					<HStack space={2}>
-						<Button
-							isLoading={loading}
-							isLoadingText='Memproses'
-							colorScheme='cyan'
-							rounded='md'
-							w='50%'
-							_text={{ fontWeight: "semibold" }}
-							_spinner={{ height: 5 }}
-							onPress={mainForm.handleSubmit(onLogin)}
-						>
-							Reset
-						</Button>
-						<Button colorScheme='red' variant='outline' borderColor='red.500' w='50%'>
-							Batal
-						</Button>
-					</HStack>
-				</Modal.Footer>
-			</Modal.Content>
+		<Modal isOpen={isOpen} onClose={onClose}>
+			<KeyboardAvoidingView behavior='padding' enabled keyboardVerticalOffset={120}>
+				<Modal.Content p={4}>
+					<Modal.Header borderColor='transparent'>Reset Password</Modal.Header>
+					<Modal.CloseButton />
+					<Modal.Body>
+						<FormProvider {...mainForm}>
+							<ResetPasswordForm />
+						</FormProvider>
+					</Modal.Body>
+					<Modal.Footer borderColor='transparent'>
+						<HStack space={2}>
+							<Button
+								isLoading={loading}
+								isLoadingText='Memproses'
+								colorScheme='cyan'
+								rounded='md'
+								w='50%'
+								_text={{ fontWeight: "semibold" }}
+								_spinner={{ height: 5 }}
+								onPress={mainForm.handleSubmit(onLogin)}
+							>
+								Reset
+							</Button>
+							<Button colorScheme='red' variant='outline' borderColor='red.500' w='50%'>
+								Batal
+							</Button>
+						</HStack>
+					</Modal.Footer>
+				</Modal.Content>
+			</KeyboardAvoidingView>
 		</Modal>
 	);
 }
