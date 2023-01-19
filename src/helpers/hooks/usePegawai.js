@@ -1,5 +1,5 @@
 import Supabase from "helpers/Supabase";
-import { getPegawai, getDataPribadi, getDokumen } from "helpers/api/PegawaiApi";
+import { getPegawai, getDataPribadi, getDokumen, getPendidikan } from "helpers/api/PegawaiApi";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSelector } from "states/slices/AuthSlice";
@@ -8,6 +8,7 @@ import { PegawaiActions } from "states/slices/PegawaiSlice";
 // Init
 let pegawaiSubs;
 let dataPribadiSubs;
+let pendidikanSubs;
 let dokumenSubs;
 
 export default function usePegawai() {
@@ -20,6 +21,9 @@ export default function usePegawai() {
 
 		const { data: dataPribadi } = await getDataPribadi(pegawai?.nip);
 		if (dataPribadi) dispatch(PegawaiActions.set({ dataPribadi }));
+
+		const { data: pendidikan } = await getPendidikan(pegawai?.nip);
+		if (pendidikan) dispatch(PegawaiActions.set({ pendidikan }));
 
 		const { data: dokumen } = await getDokumen(pegawai?.nip);
 		if (dokumen) dispatch(PegawaiActions.set({ dokumen }));
@@ -43,6 +47,9 @@ export default function usePegawai() {
 		dataPribadiSubs = Supabase.channel("public:data_pribadi")
 			.on("postgres_changes", { event: "*", schema: "public", table: "data_pribadi" }, (payload) => changePegawai(payload, "dataPribadi"))
 			.subscribe();
+		pendidikanSubs = Supabase.channel("public:pendidikan")
+			.on("postgres_changes", { event: "*", schema: "public", table: "pendidikan" }, (payload) => changePegawai(payload, "pendidikan"))
+			.subscribe();
 		dokumenSubs = Supabase.channel("public:dokumen")
 			.on("postgres_changes", { event: "*", schema: "public", table: "dokumen" }, (payload) => changePegawai(payload, "dokumen"))
 			.subscribe();
@@ -50,6 +57,7 @@ export default function usePegawai() {
 		return () => {
 			Supabase.removeChannel(pegawaiSubs);
 			Supabase.removeChannel(dataPribadiSubs);
+			Supabase.removeChannel(pendidikanSubs);
 			Supabase.removeChannel(dokumenSubs);
 			dispatch(PegawaiActions.reset());
 		};

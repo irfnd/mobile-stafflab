@@ -6,5 +6,5 @@ moment.locale("id");
 moment.tz.setDefault("Asia/Jakarta");
 
 export default function useDate({ date, type = "date" }) {
-	return moment(date).format(type === "date" ? "DD MMMM YYYY" : "DD MMMM YYYY HH:MM z");
+	return <>{moment(new Date(date)).format(type === "date" ? "DD MMMM YYYY" : "DD MMMM YYYY HH:MM z")}</>;
 }

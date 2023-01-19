@@ -1,18 +1,19 @@
 // Styles & Icons
-import { Flex, ScrollView, Text, VStack } from "native-base";
+import { Flex, ScrollView, ZStack } from "native-base";
 
 // Components
+import DataPendidikanDetail from "components/details/pendidikan/DataPendidikanDetail";
 import BaseStagger from "components/staggers/BaseStagger";
 
 export default function Pendidikan() {
 	return (
 		<Flex bg='trueGray.100' h='full' _dark={{ bg: "trueGray.900" }}>
-			<ScrollView>
-				<VStack h='full' space={4} p={8}>
-					<Text>Pendidikan Screen</Text>
-				</VStack>
-			</ScrollView>
-			<BaseStagger />
+			<ZStack justifyContent='flex-end' h='full'>
+				<ScrollView h='full' w='full'>
+					<DataPendidikanDetail />
+				</ScrollView>
+				<BaseStagger />
+			</ZStack>
 		</Flex>
 	);
 }
