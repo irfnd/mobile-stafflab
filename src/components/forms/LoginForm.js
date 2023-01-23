@@ -55,7 +55,7 @@ export default function LoginForm() {
 							status: "error",
 							variant: "left-accent",
 							title: "Login Gagal!",
-							description: err.message,
+							description: err?.message,
 							isCloseable: true,
 						}}
 					/>
