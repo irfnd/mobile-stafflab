@@ -1,17 +1,15 @@
-import { intlFormat } from "date-fns";
-
 export default function useDate({ date, type = "date" }) {
 	const options =
 		type === "date"
-			? { day: "long", month: "long", year: "long" }
+			? { day: "numeric", month: "long", year: "numeric" }
 			: {
 					day: "numeric",
 					month: "long",
 					year: "numeric",
 					hour: "numeric",
 					minute: "numeric",
-					timeZoneName: "short",
+					timeZone: "Asia/Jakarta",
 			  };
 
-	return intlFormat(new Date(date), options, { locale: "id-ID" });
+	return new Intl.DateTimeFormat("id-ID", options).format(new Date(date));
 }

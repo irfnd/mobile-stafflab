@@ -1,125 +1,127 @@
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
-import useDate from "helpers/hooks/useDate";
 
 // Styles & Icons
-import { VStack, HStack, Text, Skeleton, Divider, Icon } from "native-base";
-import { Building2, Lightbulb, CalendarCheck2, GraduationCap } from "lucide-react-native";
+import { Building2, CalendarCheck2, GraduationCap, Lightbulb } from "lucide-react-native";
+import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } from "native-base";
+
+// Components
+import PendidikanDokumenModal from "components/modals/PendidikanDokumenModal";
 
 export default function PendidikanCard({ pendidikan }) {
 	const { dokumen } = useSelector(PegawaiSelector);
-	const { ijazah, transkrip } = pendidikan;
+	const { ijazah, transkrip } = pendidikan.dokumen;
 	const dokumenPendidikan = dokumen?.filter((file) => file.kategori === "pendidikan" && (file.id === ijazah || file.id === transkrip));
+	const downloadDisclosure = useDisclose();
 
 	return (
-		<Skeleton h={130} rounded='lg' isLoaded={pendidikan && dokumen}>
-			<VStack space={4}>
-				<VStack
-					bg='white'
-					p={6}
-					rounded='lg'
-					borderWidth={1}
-					borderColor='trueGray.300'
-					_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
-					space={4}
-				>
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Jenjang Pendidikan
-							</Text>
-						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
-							<HStack alignItems='center' space={2}>
-								<Icon as={<Building2 size={16} />} color='cyan.500' />
-								<Text>{pendidikan?.jenjang}</Text>
-							</HStack>
-						</Skeleton>
-					</VStack>
+		<>
+			<Skeleton h={130} rounded='lg' isLoaded={pendidikan && dokumen}>
+				<VStack space={4}>
+					<VStack
+						bg='white'
+						p={6}
+						rounded='lg'
+						borderWidth={1}
+						borderColor='trueGray.300'
+						_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
+						space={3}
+					>
+						<Text fontSize='lg' fontWeight='semibold' w='full' isTruncated>
+							{pendidikan?.jenjang}
+						</Text>
 
-					<Divider />
+						<Divider />
 
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Nama Instansi
-							</Text>
-						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
-							<HStack alignItems='center' space={2}>
-								<Icon as={<Building2 size={16} />} color='cyan.500' />
-								<Text>{pendidikan?.nama}</Text>
-							</HStack>
-						</Skeleton>
-					</VStack>
-
-					<Divider />
-
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Jurusan
-							</Text>
-						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
-							<HStack alignItems='center' space={2}>
-								<Icon as={<Lightbulb size={16} />} color='cyan.500' />
-								<Text>{pendidikan?.jurusan}</Text>
-							</HStack>
-						</Skeleton>
-					</VStack>
-
-					<Divider />
-
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Tahun Masuk & Lulus
-							</Text>
-						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
-							<HStack alignItems='center' space={2}>
-								<Icon as={<CalendarCheck2 size={16} />} color='cyan.500' />
-								<Text>
-									{pendidikan?.tahunMasuk} - {pendidikan?.tahunLulus}
+						<VStack space={1}>
+							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+								<Text fontSize='md' fontWeight='semibold'>
+									Nama Instansi
 								</Text>
-							</HStack>
-						</Skeleton>
-					</VStack>
+							</Skeleton>
+							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+								<HStack alignItems='center' space={2}>
+									<Icon as={<Building2 size={16} />} color='cyan.500' />
+									<Text>{pendidikan?.nama}</Text>
+								</HStack>
+							</Skeleton>
+						</VStack>
 
-					<Divider />
+						<Divider />
 
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Gelar
-							</Text>
-						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
-							<HStack alignItems='center' space={2}>
-								<Icon as={<GraduationCap size={16} />} color='cyan.500' />
-								<Text>{pendidikan?.gelar || "-"}</Text>
-							</HStack>
-						</Skeleton>
-					</VStack>
+						<VStack space={1}>
+							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+								<Text fontSize='md' fontWeight='semibold'>
+									Jurusan
+								</Text>
+							</Skeleton>
+							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+								<HStack alignItems='center' space={2}>
+									<Icon as={<Lightbulb size={16} />} color='cyan.500' />
+									<Text>{pendidikan?.jurusan}</Text>
+								</HStack>
+							</Skeleton>
+						</VStack>
 
-					<Divider />
+						<Divider />
 
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Terakhir Diubah
-							</Text>
-						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
-							<HStack alignItems='center' space={2}>
-								<Icon as={<GraduationCap size={16} />} color='cyan.500' />
-								<Text>{useDate({ date: pendidikan?.createdAt, type: "datetime" })}</Text>
-							</HStack>
-						</Skeleton>
+						<VStack space={1}>
+							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+								<Text fontSize='md' fontWeight='semibold'>
+									Tahun Masuk & Lulus
+								</Text>
+							</Skeleton>
+							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+								<HStack alignItems='center' space={2}>
+									<Icon as={<CalendarCheck2 size={16} />} color='cyan.500' />
+									<Text>
+										{pendidikan?.tahunMasuk} - {pendidikan?.tahunLulus}
+									</Text>
+								</HStack>
+							</Skeleton>
+						</VStack>
+
+						<Divider />
+
+						<VStack space={1}>
+							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+								<Text fontSize='md' fontWeight='semibold'>
+									Gelar
+								</Text>
+							</Skeleton>
+							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+								<HStack alignItems='center' space={2}>
+									<Icon as={<GraduationCap size={16} />} color='cyan.500' />
+									<Text>{pendidikan?.gelar || "-"}</Text>
+								</HStack>
+							</Skeleton>
+						</VStack>
+
+						<Divider />
+
+						<VStack space={2}>
+							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+								<Text fontSize='md' fontWeight='semibold'>
+									Dokumen Berkaitan
+								</Text>
+							</Skeleton>
+							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+								<Button
+									colorScheme='cyan'
+									variant='outline'
+									borderColor='cyan.500'
+									rounded='md'
+									_text={{ fontWeight: "semibold" }}
+									onPress={downloadDisclosure.onOpen}
+								>
+									Unduh Dokumen
+								</Button>
+							</Skeleton>
+						</VStack>
 					</VStack>
 				</VStack>
-			</VStack>
-		</Skeleton>
+			</Skeleton>
+			<PendidikanDokumenModal disclosure={downloadDisclosure} files={dokumenPendidikan} />
+		</>
 	);
 }

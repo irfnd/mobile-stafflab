@@ -26,9 +26,9 @@ export default function DataDetail() {
 				borderWidth={1}
 				borderColor='trueGray.300'
 				_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
-				space={4}
+				space={3}
 			>
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Nomor Induk Keluarga
@@ -44,7 +44,7 @@ export default function DataDetail() {
 
 				<Divider />
 
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Nama Lengkap
@@ -60,7 +60,7 @@ export default function DataDetail() {
 
 				<Divider />
 
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Tempat Tanggal Lahir
@@ -78,7 +78,7 @@ export default function DataDetail() {
 
 				<Divider />
 
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Jenis Kelamin
@@ -94,7 +94,7 @@ export default function DataDetail() {
 
 				<Divider />
 
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Agama
@@ -110,7 +110,7 @@ export default function DataDetail() {
 
 				<Divider />
 
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Status Pernikahan
@@ -126,7 +126,7 @@ export default function DataDetail() {
 
 				<Divider />
 
-				<VStack space={2}>
+				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Alamat
