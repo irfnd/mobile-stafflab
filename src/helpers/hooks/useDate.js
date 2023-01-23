@@ -1,10 +1,17 @@
-import "moment/locale/id";
-import moment from "moment-timezone";
-
-// Default Locale and TZ
-moment.locale("id");
-moment.tz.setDefault("Asia/Jakarta");
+import { intlFormat } from "date-fns";
 
 export default function useDate({ date, type = "date" }) {
-	return <>{moment(new Date(date)).format(type === "date" ? "DD MMMM YYYY" : "DD MMMM YYYY HH:MM z")}</>;
+	const options =
+		type === "date"
+			? { day: "long", month: "long", year: "long" }
+			: {
+					day: "numeric",
+					month: "long",
+					year: "numeric",
+					hour: "numeric",
+					minute: "numeric",
+					timeZoneName: "short",
+			  };
+
+	return intlFormat(new Date(date), options, { locale: "id-ID" });
 }

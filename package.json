@@ -25,6 +25,7 @@
 		"@react-navigation/native-stack": "^6.9.8",
 		"@reduxjs/toolkit": "^1.9.1",
 		"@supabase/supabase-js": "^2.4.0",
+		"date-fns": "^2.29.3",
 		"dotenv": "^16.0.3",
 		"expo": "~47.0.13",
 		"expo-file-system": "~15.1.1",
