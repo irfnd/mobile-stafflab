@@ -6,7 +6,7 @@ import { Building2, CalendarCheck2, GraduationCap, Lightbulb } from "lucide-reac
 import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } from "native-base";
 
 // Components
-import PendidikanDokumenModal from "components/modals/PendidikanDokumenModal";
+import DokumenModal from "components/modals/DokumenModal";
 
 export default function PendidikanCard({ pendidikan }) {
 	const { dokumen } = useSelector(PegawaiSelector);
@@ -102,7 +102,7 @@ export default function PendidikanCard({ pendidikan }) {
 						<VStack space={2}>
 							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
 								<Text fontSize='md' fontWeight='semibold'>
-									Dokumen Berkaitan
+									Dokumen Pendidikan
 								</Text>
 							</Skeleton>
 							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
@@ -121,7 +121,7 @@ export default function PendidikanCard({ pendidikan }) {
 					</VStack>
 				</VStack>
 			</Skeleton>
-			<PendidikanDokumenModal disclosure={downloadDisclosure} files={dokumenPendidikan} />
+			<DokumenModal disclosure={downloadDisclosure} files={dokumenPendidikan} />
 		</>
 	);
 }

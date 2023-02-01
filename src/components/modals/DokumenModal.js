@@ -12,10 +12,10 @@ export default function PendidikanDokumenModal({ disclosure, files }) {
 			<Modal.Content w='sm' py={4}>
 				<Modal.Header borderColor='transparent'>Dokumen Berkaitan</Modal.Header>
 				<Modal.CloseButton />
-				<Modal.Body>
+				<Modal.Body py={0} mb={4} px={4}>
 					<VStack space={2}>
 						{files?.map((file) => (
-							<FileCard key={file.id} file={file} withBtn />
+							<FileCard key={file.id} file={file} withBtn onClose={onClose} />
 						))}
 					</VStack>
 				</Modal.Body>

@@ -14,7 +14,7 @@ import { Button, HStack, Icon, Text, VStack, useToast } from "native-base";
 // Components
 import BaseAlert from "components/alerts/BaseAlert";
 
-export default function FileCard({ file, withBtn = false }) {
+export default function FileCard({ file, withBtn = false, onClose = null }) {
 	const { session } = useSelector(AuthSelector);
 	const [loading, setLoading] = useState(false);
 
@@ -43,6 +43,8 @@ export default function FileCard({ file, withBtn = false }) {
 			});
 			const { uri } = await downloadFile.downloadAsync();
 			await saveFile(uri, path.split("/").pop());
+			setLoading(false);
+			if (onClose) onClose();
 			toast.show({
 				placement: "top",
 				duration: 3000,
@@ -61,6 +63,7 @@ export default function FileCard({ file, withBtn = false }) {
 				),
 			});
 		} catch (err) {
+			setLoading(false);
 			toast.show({
 				placement: "top",
 				duration: 3000,
@@ -79,7 +82,6 @@ export default function FileCard({ file, withBtn = false }) {
 				),
 			});
 		}
-		setLoading(false);
 	};
 
 	return (
