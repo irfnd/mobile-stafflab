@@ -6,7 +6,7 @@ import { PerusahaanSelector } from "states/slices/PerusahaanSlice";
 
 // Styles & Icons
 import { Award, Building2, CalendarClock, FileBadge, Network, Pocket, Tags } from "lucide-react-native";
-import { Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose, Button } from "native-base";
+import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } from "native-base";
 
 // Components
 import DokumenModal from "components/modals/DokumenModal";
@@ -32,120 +32,118 @@ export default function MutasiCard({ mutasi }) {
 	return (
 		<>
 			<Skeleton h={130} rounded='lg' isLoaded={mutasi && dokumen}>
-				<VStack space={4}>
-					<VStack
-						bg='white'
-						p={6}
-						rounded='lg'
-						borderWidth={1}
-						borderColor='trueGray.300'
-						_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
-						space={3}
-					>
-						<Text fontSize='lg' fontWeight='semibold' w='full' isTruncated>
-							{useCapitalize(`Mutasi ${mutasi?.jenisMutasi}`)}
-						</Text>
+				<VStack
+					bg='white'
+					p={6}
+					rounded='lg'
+					borderWidth={1}
+					borderColor='trueGray.300'
+					_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
+					space={3}
+				>
+					<Text fontSize='lg' fontWeight='semibold' w='full' isTruncated>
+						{useCapitalize(`Mutasi ${mutasi?.jenisMutasi}`)}
+					</Text>
 
-						<Divider />
+					<Divider />
 
-						<VStack space={1}>
-							<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
-								<Text fontSize='md' fontWeight='semibold'>
-									Tanggal Mutasi
-								</Text>
-							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<CalendarClock size={16} />} color='cyan.500' />
-									<Text>{useDate({ date: mutasi?.tanggalMutasi })}</Text>
-								</HStack>
-							</Skeleton>
-						</VStack>
+					<VStack space={1}>
+						<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
+							<Text fontSize='md' fontWeight='semibold'>
+								Tanggal Mutasi
+							</Text>
+						</Skeleton>
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<CalendarClock size={16} />} color='cyan.500' />
+								<Text>{useDate({ date: mutasi?.tanggalMutasi })}</Text>
+							</HStack>
+						</Skeleton>
+					</VStack>
 
-						<Divider />
+					<Divider />
 
-						<VStack space={1}>
-							<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
-								<Text fontSize='md' fontWeight='semibold'>
-									Detail Mutasi
-								</Text>
-							</Skeleton>
+					<VStack space={1}>
+						<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
+							<Text fontSize='md' fontWeight='semibold'>
+								Detail Mutasi
+							</Text>
+						</Skeleton>
 
-							{/* Tipe */}
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<Tags size={16} />} color='cyan.500' />
-									{fromTipe && toTipe && <DynamicDetailMutasi from={fromTipe} to={toTipe} />}
-								</HStack>
-							</Skeleton>
+						{/* Tipe */}
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<Tags size={16} />} color='cyan.500' />
+								{fromTipe && toTipe && <DynamicDetailMutasi from={fromTipe} to={toTipe} />}
+							</HStack>
+						</Skeleton>
 
-							{/* Status */}
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<FileBadge size={16} />} color='cyan.500' />
-									{fromStatus && toStatus && <DynamicDetailMutasi from={fromStatus} to={toStatus} />}
-								</HStack>
-							</Skeleton>
+						{/* Status */}
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<FileBadge size={16} />} color='cyan.500' />
+								{fromStatus && toStatus && <DynamicDetailMutasi from={fromStatus} to={toStatus} />}
+							</HStack>
+						</Skeleton>
 
-							{/* Insansi */}
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<Building2 size={16} />} color='cyan.500' />
-									{fromInstansi && toInstansi && <DynamicDetailMutasi from={fromInstansi} to={toInstansi} />}
-								</HStack>
-							</Skeleton>
+						{/* Insansi */}
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<Building2 size={16} />} color='cyan.500' />
+								{fromInstansi && toInstansi && <DynamicDetailMutasi from={fromInstansi} to={toInstansi} />}
+							</HStack>
+						</Skeleton>
 
-							{/* Divisi */}
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<Network size={16} />} color='cyan.500' />
-									{fromDivisi && toDivisi && <DynamicDetailMutasi from={fromDivisi} to={toDivisi} />}
-								</HStack>
-							</Skeleton>
+						{/* Divisi */}
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<Network size={16} />} color='cyan.500' />
+								{fromDivisi && toDivisi && <DynamicDetailMutasi from={fromDivisi} to={toDivisi} />}
+							</HStack>
+						</Skeleton>
 
-							{/* Jabatan */}
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<Award size={16} />} color='cyan.500' />
-									{fromJabatan && toJabatan && <DynamicDetailMutasi from={fromJabatan} to={toJabatan} />}
-								</HStack>
-							</Skeleton>
+						{/* Jabatan */}
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<Award size={16} />} color='cyan.500' />
+								{fromJabatan && toJabatan && <DynamicDetailMutasi from={fromJabatan} to={toJabatan} />}
+							</HStack>
+						</Skeleton>
 
-							{/* Golongan */}
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<HStack alignItems='center' space={2}>
-									<Icon as={<Pocket size={16} />} color='cyan.500' />
-									{fromGolongan && toGolongan && <DynamicDetailMutasi from={fromGolongan} to={toGolongan} />}
-								</HStack>
-							</Skeleton>
-						</VStack>
+						{/* Golongan */}
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<HStack alignItems='center' space={2}>
+								<Icon as={<Pocket size={16} />} color='cyan.500' />
+								{fromGolongan && toGolongan && <DynamicDetailMutasi from={fromGolongan} to={toGolongan} />}
+							</HStack>
+						</Skeleton>
+					</VStack>
 
-						<Divider />
+					<Divider />
 
-						{/* Download Dokumen */}
-						<VStack space={2}>
-							<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
-								<Text fontSize='md' fontWeight='semibold'>
-									Dokumen Mutasi
-								</Text>
-							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
-								<Button
-									colorScheme='cyan'
-									variant='outline'
-									borderColor='cyan.500'
-									rounded='md'
-									_text={{ fontWeight: "semibold" }}
-									onPress={downloadDisclosure.onOpen}
-								>
-									Unduh Dokumen
-								</Button>
-							</Skeleton>
-						</VStack>
+					{/* Download Dokumen */}
+					<VStack space={2}>
+						<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
+							<Text fontSize='md' fontWeight='semibold'>
+								Dokumen Mutasi
+							</Text>
+						</Skeleton>
+						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+							<Button
+								colorScheme='cyan'
+								variant='outline'
+								borderColor='cyan.500'
+								rounded='md'
+								_text={{ fontWeight: "semibold" }}
+								onPress={downloadDisclosure.onOpen}
+							>
+								Unduh Dokumen
+							</Button>
+						</Skeleton>
 					</VStack>
 				</VStack>
 			</Skeleton>
-			<DokumenModal disclosure={downloadDisclosure} files={dokumenMutasi} />
+			<DokumenModal disclosure={downloadDisclosure} files={dokumenMutasi} screen='mutasi' />
 		</>
 	);
 }

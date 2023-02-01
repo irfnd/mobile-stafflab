@@ -121,7 +121,7 @@ export default function PendidikanCard({ pendidikan }) {
 					</VStack>
 				</VStack>
 			</Skeleton>
-			<DokumenModal disclosure={downloadDisclosure} files={dokumenPendidikan} />
+			<DokumenModal disclosure={downloadDisclosure} files={dokumenPendidikan} screen='pendidikan' />
 		</>
 	);
 }
