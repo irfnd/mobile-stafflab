@@ -4,8 +4,8 @@ import { Flex, ScrollView, VStack, ZStack } from "native-base";
 // Components
 import ProfilCard from "components/cards/ProfilCard";
 import RecentCutiCard from "components/cards/RecentCutiCard";
-import RecentMutasiCard from "components/cards/RecentMutasiCard";
 import RecentDokumenCard from "components/cards/RecentDokumenCard";
+import RecentMutasiCard from "components/cards/RecentMutasiCard";
 import MenuList from "components/lists/MenuList";
 import BaseStagger from "components/staggers/BaseStagger";
 

@@ -1,16 +1,17 @@
 import { Controller, useFormContext } from "react-hook-form";
 
 // Styles & Icons
-import { FormControl, Input, useColorModeValue } from "native-base";
+import { FormControl, Input, TextArea, useColorModeValue } from "native-base";
 
-export default function InputDefault(props) {
-	const { name, type, label = null, placeholder, size, isRequired = false } = props;
+export default function InputTextarea(props) {
+	const { name, label = null, placeholder, h, size, isRequired = false } = props;
 
 	// Form
 	const { control, formState } = useFormContext();
 	const { errors } = formState;
 
 	// Color Mode
+	const bgInput = useColorModeValue("white", "gray.800");
 	const labelColor = useColorModeValue("gray.900", "white");
 
 	return (
@@ -24,9 +25,9 @@ export default function InputDefault(props) {
 				control={control}
 				name={name}
 				render={({ field: { onChange, onBlur, value } }) => (
-					<Input
-						type={type}
-						bg='white'
+					<TextArea
+						bg={bgInput}
+						h={h}
 						placeholder={placeholder}
 						size={size}
 						focusOutlineColor='cyan.500'
@@ -35,7 +36,8 @@ export default function InputDefault(props) {
 						value={value}
 						onChangeText={(e) => onChange(e)}
 						onBlur={onBlur}
-						_dark={{ bg: "gray.800" }}
+						isInvalid={errors[name]}
+						_invalid={{ borderColor: "red.500" }}
 					/>
 				)}
 			/>

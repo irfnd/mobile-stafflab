@@ -1,3 +1,4 @@
+import useSkeleton from "helpers/hooks/useSkeleton";
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
 import { PerusahaanSelector } from "states/slices/PerusahaanSlice";
@@ -11,7 +12,8 @@ import JabatanIllustration from "assets/illustrations/JabatanIllustration.svg";
 import StatusPegawaiBadge from "components/badges/StatusPegawaiBadge";
 
 export default function ProfileCard() {
-	const { pegawai, dokumen } = useSelector(PegawaiSelector);
+	const { pegawai } = useSelector(PegawaiSelector.pegawai);
+	const dokumen = useSelector(PegawaiSelector.dokumen.selectAll);
 	const tipePegawai = useSelector((state) => PerusahaanSelector.tipePegawai.selectById(state, pegawai?.idTipe));
 	const statusPegawai = useSelector((state) => PerusahaanSelector.statusPegawai.selectById(state, pegawai?.idStatus));
 	const instansi = useSelector((state) => PerusahaanSelector.instansi.selectById(state, pegawai?.idInstansi));
@@ -19,6 +21,7 @@ export default function ProfileCard() {
 	const jabatan = useSelector((state) => PerusahaanSelector.jabatan.selectById(state, pegawai?.idJabatan));
 	const golongan = useSelector((state) => PerusahaanSelector.golongan.selectById(state, pegawai?.idGolongan));
 	const avatar = dokumen?.filter((file) => file.kategori === "profil")[0];
+	const isLoaded = useSkeleton();
 
 	return (
 		<Flex
@@ -36,11 +39,11 @@ export default function ProfileCard() {
 						<Skeleton
 							boxSize='95px'
 							rounded='full'
-							isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+							isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 						>
 							<Avatar size='xl' source={{ uri: avatar?.detail?.publicUrl }} />
 						</Skeleton>
-						{pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar && (
+						{isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar && (
 							<StatusPegawaiBadge status={statusPegawai?.nama} />
 						)}
 					</Box>
@@ -49,7 +52,7 @@ export default function ProfileCard() {
 						<Skeleton
 							rounded='lg'
 							h='28px'
-							isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+							isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 						>
 							<Text fontSize='xl' fontWeight='semibold' noOfLines={1}>
 								{pegawai?.nama}
@@ -59,7 +62,7 @@ export default function ProfileCard() {
 							<Skeleton
 								rounded='lg'
 								h='20px'
-								isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+								isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 							>
 								<HStack alignItems='center' space={2}>
 									<Icon as={<Hash size={16} />} color='cyan.500' />
@@ -69,7 +72,7 @@ export default function ProfileCard() {
 							<Skeleton
 								rounded='lg'
 								h='20px'
-								isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+								isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 							>
 								<HStack alignItems='center' space={2}>
 									<Icon as={<UserCheck size={16} />} color='cyan.500' />
@@ -86,7 +89,7 @@ export default function ProfileCard() {
 					<Skeleton
 						rounded='lg'
 						h='28px'
-						isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+						isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 					>
 						<Text fontSize='xl' fontWeight='semibold' noOfLines={1}>
 							{jabatan?.nama}
@@ -96,7 +99,7 @@ export default function ProfileCard() {
 						<Skeleton
 							rounded='lg'
 							h='20px'
-							isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+							isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 						>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Building2 size={16} />} color='cyan.500' />
@@ -106,7 +109,7 @@ export default function ProfileCard() {
 						<Skeleton
 							rounded='lg'
 							h='20px'
-							isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+							isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 						>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Network size={16} />} color='cyan.500' />
@@ -116,7 +119,7 @@ export default function ProfileCard() {
 						<Skeleton
 							rounded='lg'
 							h='20px'
-							isLoaded={pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
+							isLoaded={isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar}
 						>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Pocket size={16} />} color='cyan.500' />
@@ -127,7 +130,7 @@ export default function ProfileCard() {
 				</VStack>
 			</VStack>
 
-			{pegawai && dokumen && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar && (
+			{isLoaded && tipePegawai && statusPegawai && instansi && divisi && jabatan && golongan && avatar && (
 				<Flex position='absolute' w={150} bottom={-20} right={0}>
 					<JabatanIllustration width={150} height={150} />
 				</Flex>

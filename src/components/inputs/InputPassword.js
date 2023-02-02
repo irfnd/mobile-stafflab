@@ -14,7 +14,6 @@ export default function InputPassword(props) {
 	const { errors } = formState;
 
 	// Color Mode
-	const bgInput = useColorModeValue("white", "gray.800");
 	const labelColor = useColorModeValue("gray.900", "white");
 
 	return (
@@ -32,7 +31,7 @@ export default function InputPassword(props) {
 						type={showPass ? "text" : "password"}
 						placeholder={placeholder}
 						size={size}
-						bg={bgInput}
+						bg='white'
 						focusOutlineColor='cyan.500'
 						InputRightElement={<EyeIcon handler={{ showPass, setShowPass }} />}
 						rounded='md'
@@ -40,6 +39,7 @@ export default function InputPassword(props) {
 						value={value}
 						onChangeText={(e) => onChange(e)}
 						onBlur={onBlur}
+						_dark={{ bg: "gray.800" }}
 					/>
 				)}
 			/>

@@ -25,19 +25,15 @@ export default function usePegawai() {
 		if (dataPribadi) dispatch(PegawaiActions.set({ dataPribadi }));
 
 		const { data: pendidikan } = await getPendidikan(pegawai?.nip);
-		if (pendidikan) dispatch(PegawaiActions.set({ pendidikan }));
-
 		const { data: dokumen } = await getDokumen(pegawai?.nip);
-		if (dokumen) dispatch(PegawaiActions.set({ dokumen }));
-
 		const { data: mutasi } = await getMutasi(pegawai?.nip);
-		if (mutasi) dispatch(PegawaiActions.set({ mutasi }));
-
 		const { data: cuti } = await getCuti(pegawai?.nip);
-		if (cuti) dispatch(PegawaiActions.set({ cuti }));
+		if (pendidikan && dokumen && mutasi && cuti) {
+			dispatch(PegawaiActions.setEntity({ pendidikan, dokumen, mutasi, cuti }));
+		}
 	};
 
-	const changePegawai = (payload, keyState) => {
+	const changeSingle = (payload, keyState) => {
 		const { createdAt, ...newState } = payload.new;
 		if (payload.eventType === "UPDATE") {
 			dispatch(PegawaiActions.set({ [keyState]: newState }));
@@ -46,26 +42,44 @@ export default function usePegawai() {
 		}
 	};
 
+	const changeEntity = (payload, keyState) => {
+		const { createdAt, id, ...newState } = payload.new;
+		switch (payload.eventType) {
+			case "INSERT":
+				dispatch(PegawaiActions.addEntity({ [keyState]: payload.new }));
+				break;
+			case "UPDATE":
+				dispatch(PegawaiActions.updateEntity({ [keyState]: { id: payload.old.id, changes: newState } }));
+				break;
+			default:
+				dispatch(PegawaiActions.deleteEntity({ [keyState]: payload.old.id }));
+				break;
+		}
+	};
+
+	const pgChanges = (table) => ({ event: "*", schema: "public", table });
+
 	useEffect(() => {
 		fetchAllData();
 
 		pegawaiSubs = Supabase.channel("public:pegawai")
-			.on("postgres_changes", { event: "*", schema: "public", table: "pegawai" }, (payload) => changePegawai(payload, "pegawai"))
+			.on("postgres_changes", pgChanges("pegawai"), (payload) => changeSingle(payload, "pegawai"))
 			.subscribe();
 		dataPribadiSubs = Supabase.channel("public:data_pribadi")
-			.on("postgres_changes", { event: "*", schema: "public", table: "data_pribadi" }, (payload) => changePegawai(payload, "dataPribadi"))
+			.on("postgres_changes", pgChanges("data_pribadi"), (payload) => changeSingle(payload, "dataPribadi"))
 			.subscribe();
+
 		pendidikanSubs = Supabase.channel("public:pendidikan")
-			.on("postgres_changes", { event: "*", schema: "public", table: "pendidikan" }, (payload) => changePegawai(payload, "pendidikan"))
+			.on("postgres_changes", pgChanges("pendidikan"), (payload) => changeEntity(payload, "pendidikan"))
 			.subscribe();
 		dokumenSubs = Supabase.channel("public:dokumen")
-			.on("postgres_changes", { event: "*", schema: "public", table: "dokumen" }, (payload) => changePegawai(payload, "dokumen"))
+			.on("postgres_changes", pgChanges("dokumen"), (payload) => changeEntity(payload, "dokumen"))
 			.subscribe();
 		mutasiSubs = Supabase.channel("public:mutasi")
-			.on("postgres_changes", { event: "*", schema: "public", table: "mutasi" }, (payload) => changePegawai(payload, "mutasi"))
+			.on("postgres_changes", pgChanges("mutasi"), (payload) => changeEntity(payload, "mutasi"))
 			.subscribe();
 		cutiSubs = Supabase.channel("public:cuti")
-			.on("postgres_changes", { event: "*", schema: "public", table: "cuti" }, (payload) => changePegawai(payload, "cuti"))
+			.on("postgres_changes", pgChanges("cuti"), (payload) => changeEntity(payload, "cuti"))
 			.subscribe();
 
 		return () => {
@@ -75,7 +89,7 @@ export default function usePegawai() {
 			Supabase.removeChannel(dokumenSubs);
 			Supabase.removeChannel(mutasiSubs);
 			Supabase.removeChannel(cutiSubs);
-			dispatch(PegawaiActions.reset());
+			dispatch(PegawaiActions.resetAll());
 		};
 	}, []);
 }

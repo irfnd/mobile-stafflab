@@ -9,6 +9,7 @@ import { useColorModeValue } from "native-base";
 
 // Screens
 import Cuti from "screens/Cuti";
+import PengajuanCuti from "screens/PengajuanCuti";
 import DataPribadi from "screens/DataPribadi";
 import Home from "screens/Home";
 import KontakAkun from "screens/KontakAkun";
@@ -37,6 +38,7 @@ export default function MainNavigation() {
 			<Stack.Screen name='Pendidikan' component={Pendidikan} options={{ title: "Riwayat Pendidikan", statusBarStyle, ...headerStyles }} />
 			<Stack.Screen name='Mutasi' component={Mutasi} options={{ title: "Riwayat Mutasi", statusBarStyle, ...headerStyles }} />
 			<Stack.Screen name='Cuti' component={Cuti} options={{ title: "Riwayat Cuti", statusBarStyle, ...headerStyles }} />
+			<Stack.Screen name='PengajuanCuti' component={PengajuanCuti} options={{ title: "Pengajuan Cuti", statusBarStyle, ...headerStyles }} />
 			<Stack.Screen name='Lamaran' component={Lamaran} options={{ title: "Data Lamaran", statusBarStyle, ...headerStyles }} />
 		</Stack.Navigator>
 	);

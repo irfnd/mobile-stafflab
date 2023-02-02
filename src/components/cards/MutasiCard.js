@@ -1,5 +1,6 @@
 import useCapitalize from "helpers/hooks/useCapitalize";
 import useDate from "helpers/hooks/useDate";
+import useSkeleton from "helpers/hooks/useSkeleton";
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
 import { PerusahaanSelector } from "states/slices/PerusahaanSlice";
@@ -12,7 +13,7 @@ import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } fr
 import DokumenModal from "components/modals/DokumenModal";
 
 export default function MutasiCard({ mutasi }) {
-	const { dokumen } = useSelector(PegawaiSelector);
+	const dokumen = useSelector(PegawaiSelector.dokumen.selectAll);
 	const dokumenMutasiId = mutasi?.dokumen?.files?.map((el) => el.id);
 	const dokumenMutasi = dokumen?.filter((file) => file.kategori === "mutasi" && dokumenMutasiId?.includes(file.id));
 	const fromTipe = useSelector((state) => PerusahaanSelector.tipePegawai.selectById(state, mutasi?.detail?.tipe?.from));
@@ -27,11 +28,12 @@ export default function MutasiCard({ mutasi }) {
 	const toJabatan = useSelector((state) => PerusahaanSelector.jabatan.selectById(state, mutasi?.detail?.jabatan?.to));
 	const fromGolongan = useSelector((state) => PerusahaanSelector.golongan.selectById(state, mutasi?.detail?.golongan?.from));
 	const toGolongan = useSelector((state) => PerusahaanSelector.golongan.selectById(state, mutasi?.detail?.golongan?.to));
+	const isLoaded = useSkeleton();
 	const downloadDisclosure = useDisclose();
 
 	return (
 		<>
-			<Skeleton h={130} rounded='lg' isLoaded={mutasi && dokumen}>
+			<Skeleton h={130} rounded='lg' isLoaded={isLoaded}>
 				<VStack
 					bg='white'
 					p={6}
@@ -48,12 +50,12 @@ export default function MutasiCard({ mutasi }) {
 					<Divider />
 
 					<VStack space={1}>
-						<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 							<Text fontSize='md' fontWeight='semibold'>
 								Tanggal Mutasi
 							</Text>
 						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<CalendarClock size={16} />} color='cyan.500' />
 								<Text>{useDate({ date: mutasi?.tanggalMutasi })}</Text>
@@ -64,14 +66,14 @@ export default function MutasiCard({ mutasi }) {
 					<Divider />
 
 					<VStack space={1}>
-						<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 							<Text fontSize='md' fontWeight='semibold'>
 								Detail Mutasi
 							</Text>
 						</Skeleton>
 
 						{/* Tipe */}
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Tags size={16} />} color='cyan.500' />
 								{fromTipe && toTipe && <DynamicDetailMutasi from={fromTipe} to={toTipe} />}
@@ -79,7 +81,7 @@ export default function MutasiCard({ mutasi }) {
 						</Skeleton>
 
 						{/* Status */}
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<FileBadge size={16} />} color='cyan.500' />
 								{fromStatus && toStatus && <DynamicDetailMutasi from={fromStatus} to={toStatus} />}
@@ -87,7 +89,7 @@ export default function MutasiCard({ mutasi }) {
 						</Skeleton>
 
 						{/* Insansi */}
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Building2 size={16} />} color='cyan.500' />
 								{fromInstansi && toInstansi && <DynamicDetailMutasi from={fromInstansi} to={toInstansi} />}
@@ -95,7 +97,7 @@ export default function MutasiCard({ mutasi }) {
 						</Skeleton>
 
 						{/* Divisi */}
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Network size={16} />} color='cyan.500' />
 								{fromDivisi && toDivisi && <DynamicDetailMutasi from={fromDivisi} to={toDivisi} />}
@@ -103,7 +105,7 @@ export default function MutasiCard({ mutasi }) {
 						</Skeleton>
 
 						{/* Jabatan */}
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Award size={16} />} color='cyan.500' />
 								{fromJabatan && toJabatan && <DynamicDetailMutasi from={fromJabatan} to={toJabatan} />}
@@ -111,7 +113,7 @@ export default function MutasiCard({ mutasi }) {
 						</Skeleton>
 
 						{/* Golongan */}
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<HStack alignItems='center' space={2}>
 								<Icon as={<Pocket size={16} />} color='cyan.500' />
 								{fromGolongan && toGolongan && <DynamicDetailMutasi from={fromGolongan} to={toGolongan} />}
@@ -123,12 +125,12 @@ export default function MutasiCard({ mutasi }) {
 
 					{/* Download Dokumen */}
 					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 							<Text fontSize='md' fontWeight='semibold'>
 								Dokumen Mutasi
 							</Text>
 						</Skeleton>
-						<Skeleton h='24px' rounded='lg' isLoaded={mutasi && dokumen}>
+						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<Button
 								colorScheme='cyan'
 								variant='outline'

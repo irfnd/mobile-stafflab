@@ -2,6 +2,7 @@ import useCapitalize from "helpers/hooks/useCapitalize";
 import useDate from "helpers/hooks/useDate";
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
+import useSkeleton from "helpers/hooks/useSkeleton";
 
 // Styles & Icons
 import { Asterisk, Cake, CreditCard, Hash, Heart, MapPin, Verified } from "lucide-react-native";
@@ -10,11 +11,12 @@ import { Divider, HStack, Icon, Skeleton, Text, VStack } from "native-base";
 // Components
 
 export default function DataDetail() {
-	const { pegawai, dataPribadi } = useSelector(PegawaiSelector);
+	const { pegawai, dataPribadi } = useSelector(PegawaiSelector.pegawai);
+	const isLoaded = useSkeleton();
 
 	return (
 		<VStack space={4}>
-			<Skeleton h={30} rounded='lg' isLoaded={pegawai && dataPribadi}>
+			<Skeleton h={30} rounded='lg' isLoaded={isLoaded}>
 				<Text fontSize='xl' fontWeight='semibold'>
 					Data Pribadi
 				</Text>
@@ -29,12 +31,12 @@ export default function DataDetail() {
 				space={3}
 			>
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Nomor Induk Keluarga
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<Hash size={16} />} color='cyan.500' />
 							<Text>{dataPribadi?.nik}</Text>
@@ -45,12 +47,12 @@ export default function DataDetail() {
 				<Divider />
 
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Nama Lengkap
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<CreditCard size={16} />} color='cyan.500' />
 							<Text>{pegawai?.nama}</Text>
@@ -61,12 +63,12 @@ export default function DataDetail() {
 				<Divider />
 
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Tempat Tanggal Lahir
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<Cake size={16} />} color='cyan.500' />
 							<Text>
@@ -79,12 +81,12 @@ export default function DataDetail() {
 				<Divider />
 
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Jenis Kelamin
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<Asterisk size={16} />} color='cyan.500' />
 							<Text>{dataPribadi?.jenisKelamin === "l" ? "Laki-laki" : "Perempuan"}</Text>
@@ -95,12 +97,12 @@ export default function DataDetail() {
 				<Divider />
 
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Agama
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<Verified size={16} />} color='cyan.500' />
 							<Text>{useCapitalize(dataPribadi?.agama)}</Text>
@@ -111,12 +113,12 @@ export default function DataDetail() {
 				<Divider />
 
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Status Pernikahan
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<Heart size={16} />} color='cyan.500' />
 							<Text>{dataPribadi?.kawin ? "Sudah Menikah" : "Belum Menikah"}</Text>
@@ -127,12 +129,12 @@ export default function DataDetail() {
 				<Divider />
 
 				<VStack space={1}>
-					<Skeleton h={26} rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
 							Alamat
 						</Text>
 					</Skeleton>
-					<Skeleton h='24px' rounded='lg' isLoaded={pegawai && dataPribadi}>
+					<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 						<HStack alignItems='center' space={2}>
 							<Icon as={<MapPin size={16} />} color='cyan.500' />
 							<Text>{dataPribadi?.alamat}</Text>

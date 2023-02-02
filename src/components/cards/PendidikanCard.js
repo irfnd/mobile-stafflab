@@ -1,3 +1,4 @@
+import useSkeleton from "helpers/hooks/useSkeleton";
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
 
@@ -9,14 +10,15 @@ import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } fr
 import DokumenModal from "components/modals/DokumenModal";
 
 export default function PendidikanCard({ pendidikan }) {
-	const { dokumen } = useSelector(PegawaiSelector);
+	const dokumen = useSelector(PegawaiSelector.dokumen.selectAll);
 	const { ijazah, transkrip } = pendidikan.dokumen;
 	const dokumenPendidikan = dokumen?.filter((file) => file.kategori === "pendidikan" && (file.id === ijazah || file.id === transkrip));
+	const isLoaded = useSkeleton();
 	const downloadDisclosure = useDisclose();
 
 	return (
 		<>
-			<Skeleton h={130} rounded='lg' isLoaded={pendidikan && dokumen}>
+			<Skeleton h={130} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 				<VStack space={4}>
 					<VStack
 						bg='white'
@@ -34,12 +36,12 @@ export default function PendidikanCard({ pendidikan }) {
 						<Divider />
 
 						<VStack space={1}>
-							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
 									Nama Instansi
 								</Text>
 							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<HStack alignItems='center' space={2}>
 									<Icon as={<Building2 size={16} />} color='cyan.500' />
 									<Text>{pendidikan?.nama}</Text>
@@ -50,12 +52,12 @@ export default function PendidikanCard({ pendidikan }) {
 						<Divider />
 
 						<VStack space={1}>
-							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
 									Jurusan
 								</Text>
 							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<HStack alignItems='center' space={2}>
 									<Icon as={<Lightbulb size={16} />} color='cyan.500' />
 									<Text>{pendidikan?.jurusan}</Text>
@@ -66,12 +68,12 @@ export default function PendidikanCard({ pendidikan }) {
 						<Divider />
 
 						<VStack space={1}>
-							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
 									Tahun Masuk & Lulus
 								</Text>
 							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<HStack alignItems='center' space={2}>
 									<Icon as={<CalendarCheck2 size={16} />} color='cyan.500' />
 									<Text>
@@ -84,12 +86,12 @@ export default function PendidikanCard({ pendidikan }) {
 						<Divider />
 
 						<VStack space={1}>
-							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
 									Gelar
 								</Text>
 							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<HStack alignItems='center' space={2}>
 									<Icon as={<GraduationCap size={16} />} color='cyan.500' />
 									<Text>{pendidikan?.gelar || "-"}</Text>
@@ -100,12 +102,12 @@ export default function PendidikanCard({ pendidikan }) {
 						<Divider />
 
 						<VStack space={2}>
-							<Skeleton h={26} rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
 									Dokumen Pendidikan
 								</Text>
 							</Skeleton>
-							<Skeleton h='24px' rounded='lg' isLoaded={pendidikan && dokumen}>
+							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Button
 									colorScheme='cyan'
 									variant='outline'

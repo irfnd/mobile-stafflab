@@ -1,21 +1,23 @@
 import { useNavigation } from "@react-navigation/native";
-import { PegawaiSelector } from "states/slices/PegawaiSlice";
+import useSkeleton from "helpers/hooks/useSkeleton";
 import { useSelector } from "react-redux";
+import { PegawaiSelector } from "states/slices/PegawaiSlice";
 
 // Styles & Icons
 import { ChevronRight } from "lucide-react-native";
-import { HStack, Icon, Link, Text, VStack, Skeleton } from "native-base";
+import { HStack, Icon, Link, Skeleton, Text, VStack } from "native-base";
 
 // Components
 import RecentMutasiList from "components/lists/RecentMutasiList";
 
 export default function RecentMutasiCard() {
-	const { pegawai, mutasi } = useSelector(PegawaiSelector);
+	const mutasi = useSelector(PegawaiSelector.mutasi.selectAll);
+	const isLoaded = useSkeleton();
 	const navigation = useNavigation();
 
 	return (
 		<VStack w='full' space={4}>
-			<Skeleton h={29} rounded='lg' isLoaded={pegawai && mutasi}>
+			<Skeleton h={29} rounded='lg' isLoaded={isLoaded}>
 				<HStack alignItems='center' justifyContent='space-between'>
 					<Text fontSize='xl' fontWeight='semibold'>
 						Riwayat Mutasi
@@ -25,7 +27,7 @@ export default function RecentMutasiCard() {
 					</Link>
 				</HStack>
 			</Skeleton>
-			<RecentMutasiList />
+			<RecentMutasiList mutasi={mutasi} />
 		</VStack>
 	);
 }

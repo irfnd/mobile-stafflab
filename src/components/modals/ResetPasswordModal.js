@@ -16,7 +16,7 @@ import ResetPasswordForm from "components/forms/ResetPasswordForm";
 
 export default function ResetPasswordModal({ disclosure }) {
 	const [loading, setLoading] = useState(false);
-	const { pegawai } = useSelector(PegawaiSelector);
+	const { pegawai } = useSelector(PegawaiSelector.pegawai);
 	const { isOpen, onClose } = disclosure;
 	const toast = useToast();
 

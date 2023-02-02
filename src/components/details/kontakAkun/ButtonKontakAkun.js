@@ -13,6 +13,7 @@ export default function ButtonKontakAkun() {
 			<Button
 				size='lg'
 				w='full'
+				colorScheme='cyan'
 				leftIcon={<Icon as={<Edit size={20} />} mr={2} />}
 				rounded='md'
 				_text={{ fontWeight: "semibold" }}

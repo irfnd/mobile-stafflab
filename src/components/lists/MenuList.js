@@ -1,16 +1,17 @@
+import { useNavigation } from "@react-navigation/native";
+import useSkeleton from "helpers/hooks/useSkeleton";
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
-import { useNavigation } from "@react-navigation/native";
 
 // Styles & Icons
-import { FileKey2 } from "lucide-react-native";
-import { Box, Flex, HStack, Icon, Pressable, ScrollView, Skeleton, Text, VStack, ZStack } from "native-base";
+import { Box, Flex, HStack, Pressable, ScrollView, Skeleton, Text, VStack } from "native-base";
 
 // Constants
 import HomeMenu from "constants/HomeMenu";
 
 export default function MenuList() {
-	const { pegawai } = useSelector(PegawaiSelector);
+	const { pegawai } = useSelector(PegawaiSelector.pegawai);
+	const isLoaded = useSkeleton();
 	const navigation = useNavigation();
 
 	return (
@@ -29,7 +30,7 @@ export default function MenuList() {
 								borderColor='trueGray.300'
 								_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
 							>
-								<Skeleton boxSize='80px' rounded='lg' isLoaded={pegawai}>
+								<Skeleton boxSize='80px' rounded='lg' isLoaded={isLoaded}>
 									<VStack alignItems='center' h='full'>
 										<Box>{menu.illustration}</Box>
 										<Text position='absolute' fontSize='xs' fontWeight='semibold' bottom={5}>

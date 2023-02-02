@@ -9,7 +9,7 @@ import { Divider, HStack, Icon, Text, VStack } from "native-base";
 import ButtonKontakAkun from "components/details/kontakAkun/ButtonKontakAkun";
 
 export default function DataKontakAkunDetail() {
-	const { pegawai } = useSelector(PegawaiSelector);
+	const { pegawai } = useSelector(PegawaiSelector.pegawai);
 
 	return (
 		<VStack h='full' space={8} p={8}>

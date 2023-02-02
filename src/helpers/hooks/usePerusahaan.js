@@ -35,28 +35,28 @@ export default function usePerusahaan() {
 		}
 	};
 
-	const postgresChanges = (table) => ({ event: "*", schema: "public", table });
+	const pgChanges = (table) => ({ event: "*", schema: "public", table });
 
 	useEffect(() => {
 		fetchAllData();
 
 		Supabase.channel("public:tipe_pegawai")
-			.on("postgres_changes", postgresChanges("tipe_pegawai"), (payload) => changePerusahaan(payload, "tipePegawai"))
+			.on("postgres_changes", pgChanges("tipe_pegawai"), (payload) => changePerusahaan(payload, "tipePegawai"))
 			.subscribe();
 		Supabase.channel("public:status_pegawai")
-			.on("postgres_changes", postgresChanges("status_pegawai"), (payload) => changePerusahaan(payload, "statusPegawai"))
+			.on("postgres_changes", pgChanges("status_pegawai"), (payload) => changePerusahaan(payload, "statusPegawai"))
 			.subscribe();
 		Supabase.channel("public:instansi")
-			.on("postgres_changes", postgresChanges("instansi"), (payload) => changePerusahaan(payload, "instansi"))
+			.on("postgres_changes", pgChanges("instansi"), (payload) => changePerusahaan(payload, "instansi"))
 			.subscribe();
 		Supabase.channel("public:divisi")
-			.on("postgres_changes", postgresChanges("divisi"), (payload) => changePerusahaan(payload, "divisi"))
+			.on("postgres_changes", pgChanges("divisi"), (payload) => changePerusahaan(payload, "divisi"))
 			.subscribe();
 		Supabase.channel("public:jabatan")
-			.on("postgres_changes", postgresChanges("jabatan"), (payload) => changePerusahaan(payload, "jabatan"))
+			.on("postgres_changes", pgChanges("jabatan"), (payload) => changePerusahaan(payload, "jabatan"))
 			.subscribe();
 		Supabase.channel("public:golongan")
-			.on("postgres_changes", postgresChanges("golongan"), (payload) => changePerusahaan(payload, "golongan"))
+			.on("postgres_changes", pgChanges("golongan"), (payload) => changePerusahaan(payload, "golongan"))
 			.subscribe();
 	}, []);
 }

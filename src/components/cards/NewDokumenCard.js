@@ -3,10 +3,10 @@ import useDate from "helpers/hooks/useDate";
 import useSkeleton from "helpers/hooks/useSkeleton";
 
 // Styles & Icons
-import { CalendarRange } from "lucide-react-native";
+import { FileClock } from "lucide-react-native";
 import { HStack, Icon, Skeleton, Text, VStack } from "native-base";
 
-export default function NewCutiCard({ cuti }) {
+export default function NewDokumenCard({ file }) {
 	const isLoaded = useSkeleton();
 
 	return (
@@ -20,13 +20,13 @@ export default function NewCutiCard({ cuti }) {
 			space={2}
 		>
 			<Text fontSize='md' fontWeight='semibold' w='full' isTruncated>
-				{useCapitalize(`${cuti?.keterangan}`)}
+				{useCapitalize(`${file?.nama}`)}
 			</Text>
 			<VStack space={1}>
 				<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 					<HStack alignItems='center' space={2}>
-						<Icon as={<CalendarRange size={16} />} color='cyan.500' />
-						<Text>{`${useDate({ date: cuti?.mulaiCuti })} - ${useDate({ date: cuti?.selesaiCuti })}`}</Text>
+						<Icon as={<FileClock size={16} />} color='cyan.500' />
+						<Text>{useDate({ date: file?.createdAt || file?.uploadedAt, type: "datetime" })}</Text>
 					</HStack>
 				</Skeleton>
 			</VStack>
