@@ -12,7 +12,7 @@ export default function RecentMutasiList({ mutasi }) {
 
 	return (
 		<Skeleton h={100} rounded='lg' isLoaded={isLoaded && mutasi}>
-			<VStack space={4}>
+			<VStack space={2}>
 				{mutasi?.length !== 0 ? (
 					mutasi?.slice(0, 5).map((item) => <NewMutasiCard key={item.id} mutasi={item} />)
 				) : (

@@ -22,11 +22,13 @@ export default function DataPendidikanDetail() {
 					</Text>
 				</Skeleton>
 				<Skeleton h={100} rounded='lg' isLoaded={isLoaded && pendidikan}>
-					{isLoaded && pendidikan.length !== 0 ? (
-						pendidikan?.map((item) => <PendidikanCard key={item.id} pendidikan={item} />)
-					) : (
-						<RecentEmptyCard screen='riwayat pendidikan' />
-					)}
+					<VStack space={2}>
+						{isLoaded && pendidikan.length !== 0 ? (
+							pendidikan?.map((item) => <PendidikanCard key={item.id} pendidikan={item} />)
+						) : (
+							<RecentEmptyCard screen='riwayat pendidikan' />
+						)}
+					</VStack>
 				</Skeleton>
 			</VStack>
 		</VStack>

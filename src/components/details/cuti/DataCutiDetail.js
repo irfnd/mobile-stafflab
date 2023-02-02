@@ -38,11 +38,13 @@ export default function DataCutiDetail() {
 					</Text>
 				</Skeleton>
 				<Skeleton h={100} rounded='lg' isLoaded={isLoaded && pengajuanCuti}>
-					{isLoaded && pengajuanCuti.length !== 0 ? (
-						pengajuanCuti.map((item) => <CutiCard key={item.id} cuti={item} screen='pengajuan' />)
-					) : (
-						<RecentEmptyCard screen='pengajuan cuti' />
-					)}
+					<VStack space={2}>
+						{isLoaded && pengajuanCuti.length !== 0 ? (
+							pengajuanCuti.map((item) => <CutiCard key={item.id} cuti={item} screen='pengajuan' />)
+						) : (
+							<RecentEmptyCard screen='pengajuan cuti' />
+						)}
+					</VStack>
 				</Skeleton>
 			</VStack>
 			<VStack space={4}>
@@ -52,11 +54,13 @@ export default function DataCutiDetail() {
 					</Text>
 				</Skeleton>
 				<Skeleton h={100} rounded='lg' isLoaded={isLoaded && riwayatCuti}>
-					{isLoaded && riwayatCuti.length !== 0 ? (
-						riwayatCuti.map((item) => <CutiCard key={item.id} cuti={item} />)
-					) : (
-						<RecentEmptyCard screen='riwayat cuti' />
-					)}
+					<VStack space={2}>
+						{isLoaded && riwayatCuti.length !== 0 ? (
+							riwayatCuti.map((item) => <CutiCard key={item.id} cuti={item} />)
+						) : (
+							<RecentEmptyCard screen='riwayat cuti' />
+						)}
+					</VStack>
 				</Skeleton>
 			</VStack>
 		</VStack>

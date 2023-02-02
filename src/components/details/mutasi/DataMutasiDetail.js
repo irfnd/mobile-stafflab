@@ -22,11 +22,13 @@ export default function DataMutasiDetail() {
 					</Text>
 				</Skeleton>
 				<Skeleton h={100} rounded='lg' isLoaded={isLoaded && mutasi}>
-					{isLoaded && mutasi.length !== 0 ? (
-						mutasi?.map((item) => <MutasiCard key={item.id} mutasi={item} />)
-					) : (
-						<RecentEmptyCard screen='riwayat mutasi' />
-					)}
+					<VStack space={2}>
+						{isLoaded && mutasi.length !== 0 ? (
+							mutasi?.map((item) => <MutasiCard key={item.id} mutasi={item} />)
+						) : (
+							<RecentEmptyCard screen='riwayat mutasi' />
+						)}
+					</VStack>
 				</Skeleton>
 			</VStack>
 		</VStack>
