@@ -1,8 +1,8 @@
 import "dotenv/config";
 
 module.exports = {
-	name: "mobile-stafflab",
-	slug: "Stafflab Mobile",
+	name: "Stafflab Mobile",
+	slug: "mobile-stafflab",
 	version: "1.0.0",
 	owner: "irfnd",
 	orientation: "portrait",
