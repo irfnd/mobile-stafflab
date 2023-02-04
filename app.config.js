@@ -15,7 +15,7 @@ module.exports = {
 	ios: { supportsTablet: true },
 	android: {
 		adaptiveIcon: { foregroundImage: "./assets/adaptive-icon.png", backgroundColor: "#FFFFFF" },
-		package: "com.stafflab.mobile",
+		package: "com.stafflab.irfnd",
 		versionCode: 1,
 	},
 	web: { favicon: "./assets/favicon.png" },
