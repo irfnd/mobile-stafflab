@@ -32,6 +32,7 @@
 		"expo-modules-autolinking": "~1.0.2",
 		"expo-splash-screen": "~0.17.5",
 		"expo-status-bar": "~1.4.2",
+		"expo-system-ui": "~2.0.1",
 		"lucide-react-native": "^0.108.0",
 		"native-base": "^3.4.25",
 		"react": "18.1.0",

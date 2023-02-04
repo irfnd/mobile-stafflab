@@ -7,7 +7,7 @@ module.exports = {
 	owner: "irfnd",
 	orientation: "portrait",
 	icon: "./assets/icon.png",
-	userInterfaceStyle: "light",
+	userInterfaceStyle: "automatic",
 	jsEngine: "hermes",
 	splash: { image: "./assets/splash.png", resizeMode: "cover" },
 	updates: { fallbackToCacheTimeout: 0 },
@@ -15,7 +15,7 @@ module.exports = {
 	ios: { supportsTablet: true },
 	android: {
 		adaptiveIcon: { foregroundImage: "./assets/adaptive-icon.png", backgroundColor: "#FFFFFF" },
-		package: "com.stafflab.irfnd",
+		package: "com.stafflab.mobile",
 		versionCode: 1,
 	},
 	web: { favicon: "./assets/favicon.png" },
