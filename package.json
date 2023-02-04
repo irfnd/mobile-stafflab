@@ -8,8 +8,7 @@
 	"scripts": {
 		"prepare": "husky install",
 		"start": "expo start",
-		"start:clear": "expo start --clear",
-		"android": "expo start --android",
+		"build:android": "eas build -p android --profile production",
 		"lint": "eslint . --fix",
 		"format": "prettier --write \"**/*.{js,json,md}\""
 	},
