@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
 
 // Styles & Icons
-import { CalendarRange, FileCheck, FileText } from "lucide-react-native";
+import { CalendarRange, ExternalLink, FileCheck, FileText } from "lucide-react-native";
 import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } from "native-base";
 
 // Components
@@ -14,7 +14,8 @@ import DokumenModal from "components/modals/DokumenModal";
 export default function CutiCard({ cuti, screen = "cuti" }) {
 	const { pegawai } = useSelector(PegawaiSelector.pegawai);
 	const dokumen = useSelector(PegawaiSelector.dokumen.selectAll);
-	const dokumenCuti = dokumen?.filter((item) => item.kategori === "cuti");
+	const dokumenCutiId = cuti?.dokumen?.files?.map((el) => el.id);
+	const dokumenCuti = dokumen?.filter((file) => file.kategori === "cuti" && dokumenCutiId?.includes(file.id));
 	const downloadDisclosure = useDisclose();
 	const isLoaded = useSkeleton();
 
@@ -36,6 +37,7 @@ export default function CutiCard({ cuti, screen = "cuti" }) {
 
 					<Divider />
 
+					{/* Tanggal Cuti */}
 					<VStack space={1}>
 						<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenCuti}>
 							<Text fontSize='md' fontWeight='semibold'>
@@ -52,6 +54,7 @@ export default function CutiCard({ cuti, screen = "cuti" }) {
 
 					<Divider />
 
+					{/* Keterangan */}
 					<VStack space={1}>
 						<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenCuti}>
 							<Text fontSize='md' fontWeight='semibold'>
@@ -66,6 +69,7 @@ export default function CutiCard({ cuti, screen = "cuti" }) {
 						</Skeleton>
 					</VStack>
 
+					{/* Diterima */}
 					{screen !== "cuti" && (
 						<>
 							<Divider />
@@ -85,26 +89,21 @@ export default function CutiCard({ cuti, screen = "cuti" }) {
 						</>
 					)}
 
-					{/* Download Dokumen */}
+					{/* Dokumen */}
 					{screen === "cuti" && (
 						<>
 							<Divider />
-							<VStack space={2}>
-								<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenCuti}>
-									<Text fontSize='md' fontWeight='semibold'>
-										Dokumen Cuti
-									</Text>
-								</Skeleton>
+							<VStack>
 								<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenCuti}>
 									<Button
 										colorScheme='cyan'
-										variant='outline'
-										borderColor='cyan.500'
+										variant='solid'
 										rounded='md'
+										leftIcon={<Icon as={<ExternalLink size={18} />} mr={2} />}
 										_text={{ fontWeight: "semibold" }}
 										onPress={downloadDisclosure.onOpen}
 									>
-										Unduh Dokumen
+										Lihat Dokumen
 									</Button>
 								</Skeleton>
 							</VStack>

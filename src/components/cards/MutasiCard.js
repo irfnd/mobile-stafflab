@@ -6,7 +6,7 @@ import { PegawaiSelector } from "states/slices/PegawaiSlice";
 import { PerusahaanSelector } from "states/slices/PerusahaanSlice";
 
 // Styles & Icons
-import { Award, Building2, CalendarClock, FileBadge, Network, Pocket, Tags } from "lucide-react-native";
+import { Award, Building2, CalendarClock, ExternalLink, FileBadge, Network, Pocket, Tags } from "lucide-react-native";
 import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } from "native-base";
 
 // Components
@@ -49,6 +49,7 @@ export default function MutasiCard({ mutasi }) {
 
 					<Divider />
 
+					{/* Tanggal Mutasi */}
 					<VStack space={1}>
 						<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 							<Text fontSize='md' fontWeight='semibold'>
@@ -123,23 +124,18 @@ export default function MutasiCard({ mutasi }) {
 
 					<Divider />
 
-					{/* Download Dokumen */}
-					<VStack space={2}>
-						<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
-							<Text fontSize='md' fontWeight='semibold'>
-								Dokumen Mutasi
-							</Text>
-						</Skeleton>
+					{/* Dokumen */}
+					<VStack>
 						<Skeleton h='24px' rounded='lg' isLoaded={isLoaded}>
 							<Button
 								colorScheme='cyan'
-								variant='outline'
-								borderColor='cyan.500'
+								variant='solid'
 								rounded='md'
+								leftIcon={<Icon as={<ExternalLink size={18} />} mr={2} />}
 								_text={{ fontWeight: "semibold" }}
 								onPress={downloadDisclosure.onOpen}
 							>
-								Unduh Dokumen
+								Lihat Dokumen
 							</Button>
 						</Skeleton>
 					</VStack>

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
 
 // Styles & Icons
-import { Building2, CalendarCheck2, GraduationCap, Lightbulb } from "lucide-react-native";
+import { Building2, CalendarCheck2, ExternalLink, GraduationCap, Lightbulb } from "lucide-react-native";
 import { Button, Divider, HStack, Icon, Skeleton, Text, VStack, useDisclose } from "native-base";
 
 // Components
@@ -35,10 +35,11 @@ export default function PendidikanCard({ pendidikan }) {
 
 						<Divider />
 
+						{/* Instansi Pendidikan */}
 						<VStack space={1}>
 							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
-									Nama Instansi
+									Instansi Pendidikan
 								</Text>
 							</Skeleton>
 							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
@@ -51,10 +52,11 @@ export default function PendidikanCard({ pendidikan }) {
 
 						<Divider />
 
+						{/* Jurusan/Program Studi */}
 						<VStack space={1}>
 							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
-									Jurusan
+									Jurusan/Program Studi
 								</Text>
 							</Skeleton>
 							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
@@ -67,6 +69,7 @@ export default function PendidikanCard({ pendidikan }) {
 
 						<Divider />
 
+						{/* Tahun Masuk & Lulus */}
 						<VStack space={1}>
 							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
@@ -85,10 +88,11 @@ export default function PendidikanCard({ pendidikan }) {
 
 						<Divider />
 
+						{/* Gelar Akademis */}
 						<VStack space={1}>
 							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Text fontSize='md' fontWeight='semibold'>
-									Gelar
+									Gelar Akademis
 								</Text>
 							</Skeleton>
 							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
@@ -101,22 +105,18 @@ export default function PendidikanCard({ pendidikan }) {
 
 						<Divider />
 
-						<VStack space={2}>
-							<Skeleton h={26} rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
-								<Text fontSize='md' fontWeight='semibold'>
-									Dokumen Pendidikan
-								</Text>
-							</Skeleton>
+						{/* Dokumen */}
+						<VStack>
 							<Skeleton h='24px' rounded='lg' isLoaded={isLoaded && dokumenPendidikan}>
 								<Button
 									colorScheme='cyan'
-									variant='outline'
-									borderColor='cyan.500'
+									variant='solid'
 									rounded='md'
+									leftIcon={<Icon as={<ExternalLink size={18} />} mr={2} />}
 									_text={{ fontWeight: "semibold" }}
 									onPress={downloadDisclosure.onOpen}
 								>
-									Unduh Dokumen
+									Lihat Dokumen
 								</Button>
 							</Skeleton>
 						</VStack>

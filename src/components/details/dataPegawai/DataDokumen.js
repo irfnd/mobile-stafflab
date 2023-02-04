@@ -21,7 +21,7 @@ export default function DataDokumen() {
 				</Text>
 			</Skeleton>
 			<Skeleton h={130} rounded='lg' isLoaded={isLoaded && dokumenPribadi}>
-				<VStack space={2}>
+				<VStack space={4}>
 					{dokumenPribadi?.map((file) => (
 						<FileCard key={file.id} file={file} withBtn />
 					))}

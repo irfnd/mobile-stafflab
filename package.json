@@ -10,8 +10,6 @@
 		"start": "expo start",
 		"start:clear": "expo start --clear",
 		"android": "expo start --android",
-		"ios": "expo start --ios",
-		"web": "expo start --web",
 		"lint": "eslint . --fix",
 		"format": "prettier --write \"**/*.{js,json,md}\""
 	},

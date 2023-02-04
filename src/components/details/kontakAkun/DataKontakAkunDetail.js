@@ -12,41 +12,36 @@ export default function DataKontakAkunDetail() {
 	const { pegawai } = useSelector(PegawaiSelector.pegawai);
 
 	return (
-		<VStack h='full' space={8} p={8}>
-			<VStack space={4}>
-				<Text fontSize='xl' fontWeight='semibold'>
-					Kontak & Akun
-				</Text>
-				<VStack
-					bg='white'
-					p={6}
-					rounded='lg'
-					borderWidth={1}
-					borderColor='trueGray.300'
-					_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
-					space={4}
-				>
-					<VStack space={2}>
-						<Text fontSize='md' fontWeight='semibold'>
-							Email
-						</Text>
-						<HStack alignItems='center' space={2}>
-							<Icon as={<MailCheck size={16} />} color='cyan.500' />
-							<Text>{pegawai?.email}</Text>
-						</HStack>
-					</VStack>
+		<VStack h='full' space={4} p={8}>
+			<VStack
+				bg='white'
+				p={6}
+				rounded='lg'
+				borderWidth={1}
+				borderColor='trueGray.300'
+				_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
+				space={4}
+			>
+				<VStack space={2}>
+					<Text fontSize='md' fontWeight='semibold'>
+						Email
+					</Text>
+					<HStack alignItems='center' space={2}>
+						<Icon as={<MailCheck size={16} />} color='cyan.500' />
+						<Text>{pegawai?.email}</Text>
+					</HStack>
+				</VStack>
 
-					<Divider />
+				<Divider />
 
-					<VStack space={2}>
-						<Text fontSize='md' fontWeight='semibold'>
-							Nomor Telepon
-						</Text>
-						<HStack alignItems='center' space={2}>
-							<Icon as={<PhoneCall size={16} />} color='cyan.500' />
-							<Text>{pegawai?.noTelepon}</Text>
-						</HStack>
-					</VStack>
+				<VStack space={2}>
+					<Text fontSize='md' fontWeight='semibold'>
+						Nomor Telepon
+					</Text>
+					<HStack alignItems='center' space={2}>
+						<Icon as={<PhoneCall size={16} />} color='cyan.500' />
+						<Text>{pegawai?.noTelepon}</Text>
+					</HStack>
 				</VStack>
 			</VStack>
 			<ButtonKontakAkun />

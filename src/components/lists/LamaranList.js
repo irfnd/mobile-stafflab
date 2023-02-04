@@ -15,15 +15,10 @@ export default function LamaranList() {
 	const isLoaded = useSkeleton();
 
 	return (
-		<VStack h='full' space={8} p={8}>
-			<VStack space={4}>
-				<Skeleton h={30} rounded='lg' isLoaded={isLoaded && dokumenLamaran}>
-					<Text fontSize='xl' fontWeight='semibold'>
-						Dokumen Lamaran
-					</Text>
-				</Skeleton>
+		<VStack h='full' p={8}>
+			<VStack>
 				<Skeleton h={130} rounded='lg' isLoaded={isLoaded && dokumenLamaran}>
-					<VStack space={2}>
+					<VStack space={4}>
 						{dokumenLamaran?.map((file) => (
 							<FileCard key={file.id} file={file} withBtn />
 						))}

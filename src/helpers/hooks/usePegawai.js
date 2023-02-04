@@ -25,12 +25,16 @@ export default function usePegawai() {
 		if (dataPribadi) dispatch(PegawaiActions.set({ dataPribadi }));
 
 		const { data: pendidikan } = await getPendidikan(pegawai?.nip);
+		if (pendidikan) dispatch(PegawaiActions.setEntity({ pendidikan }));
+
 		const { data: dokumen } = await getDokumen(pegawai?.nip);
+		if (dokumen) dispatch(PegawaiActions.setEntity({ dokumen }));
+
 		const { data: mutasi } = await getMutasi(pegawai?.nip);
+		if (mutasi) dispatch(PegawaiActions.setEntity({ mutasi }));
+
 		const { data: cuti } = await getCuti(pegawai?.nip);
-		if (pendidikan && dokumen && mutasi && cuti) {
-			dispatch(PegawaiActions.setEntity({ pendidikan, dokumen, mutasi, cuti }));
-		}
+		if (cuti) dispatch(PegawaiActions.setEntity({ cuti }));
 	};
 
 	const changeSingle = (payload, keyState) => {

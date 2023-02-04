@@ -12,7 +12,7 @@ export default function RecentDocumentList({ dokumen }) {
 
 	return (
 		<Skeleton h={100} rounded='lg' isLoaded={isLoaded && dokumen}>
-			<VStack space={2}>
+			<VStack space={4}>
 				{dokumen?.length !== 0 ? (
 					dokumen?.slice(0, 5).map((item) => <NewDokumenCard key={item.id} file={item} />)
 				) : (

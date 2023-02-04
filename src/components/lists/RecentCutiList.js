@@ -12,7 +12,7 @@ export default function RecentCutiList({ cuti }) {
 
 	return (
 		<Skeleton h={100} rounded='lg' isLoaded={isLoaded && cuti}>
-			<VStack space={2}>
+			<VStack space={4}>
 				{cuti?.length !== 0 ? (
 					cuti?.slice(0, 5).map((item) => <NewCutiCard key={item.id} cuti={item} />)
 				) : (

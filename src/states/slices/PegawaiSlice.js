@@ -3,8 +3,8 @@ import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 const entityAdapter = {
 	pendidikan: createEntityAdapter({ sortComparer: (a, b) => a.createdAt.localeCompare(b.createdAt) }),
 	dokumen: createEntityAdapter({ sortComparer: (a, b) => b.uploadedAt.localeCompare(a.uploadedAt) }),
-	mutasi: createEntityAdapter({ sortComparer: (a, b) => a.createdAt.localeCompare(b.createdAt) }),
-	cuti: createEntityAdapter({ sortComparer: (a, b) => a.createdAt.localeCompare(b.createdAt) }),
+	mutasi: createEntityAdapter({ sortComparer: (a, b) => b.createdAt.localeCompare(a.createdAt) }),
+	cuti: createEntityAdapter({ sortComparer: (a, b) => b.createdAt.localeCompare(a.createdAt) }),
 };
 
 const initialState = {

@@ -17,7 +17,7 @@ export default function MenuList() {
 	return (
 		<Flex w='full'>
 			<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-				<HStack space={3}>
+				<HStack space={4}>
 					{HomeMenu.map((menu, i) => (
 						<Pressable key={i} onPress={() => navigation.navigate(menu.screen)} disabled={!pegawai}>
 							<Box

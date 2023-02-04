@@ -1,8 +1,8 @@
 import useCapitalize from "helpers/hooks/useCapitalize";
 import useDate from "helpers/hooks/useDate";
+import useSkeleton from "helpers/hooks/useSkeleton";
 import { useSelector } from "react-redux";
 import { PegawaiSelector } from "states/slices/PegawaiSlice";
-import useSkeleton from "helpers/hooks/useSkeleton";
 
 // Styles & Icons
 import { Asterisk, Cake, CreditCard, Hash, Heart, MapPin, Verified } from "lucide-react-native";
@@ -30,6 +30,7 @@ export default function DataDetail() {
 				_dark={{ bg: "trueGray.800", borderColor: "trueGray.700" }}
 				space={3}
 			>
+				{/* Nomor Induk Keluarga */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
@@ -46,6 +47,7 @@ export default function DataDetail() {
 
 				<Divider />
 
+				{/* Nama Lengkap */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
@@ -62,6 +64,7 @@ export default function DataDetail() {
 
 				<Divider />
 
+				{/* Tempat Tanggal Lahir */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
@@ -80,6 +83,7 @@ export default function DataDetail() {
 
 				<Divider />
 
+				{/* Jenis Kelamin */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
@@ -96,6 +100,7 @@ export default function DataDetail() {
 
 				<Divider />
 
+				{/* Agama */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
@@ -112,6 +117,7 @@ export default function DataDetail() {
 
 				<Divider />
 
+				{/* Status Pernikahan */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>
@@ -128,6 +134,7 @@ export default function DataDetail() {
 
 				<Divider />
 
+				{/* Alamat */}
 				<VStack space={1}>
 					<Skeleton h={26} rounded='lg' isLoaded={isLoaded}>
 						<Text fontSize='md' fontWeight='semibold'>

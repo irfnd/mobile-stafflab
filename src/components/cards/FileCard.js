@@ -2,13 +2,13 @@ import * as FileSystem from "expo-file-system";
 import { StorageAccessFramework } from "expo-file-system";
 import useCapitalize from "helpers/hooks/useCapitalize";
 import useDate from "helpers/hooks/useDate";
+import { useState } from "react";
 import * as mime from "react-native-mime-types";
 import { useSelector } from "react-redux";
 import { AuthSelector } from "states/slices/AuthSlice";
-import { useState } from "react";
 
 // Styles & Icons
-import { FileBadge, FileClock } from "lucide-react-native";
+import { DownloadCloud, FileBadge, FileClock } from "lucide-react-native";
 import { Button, HStack, Icon, Text, VStack, useToast } from "native-base";
 
 // Components
@@ -110,10 +110,10 @@ export default function FileCard({ file, withBtn = false, onClose = null }) {
 					isLoading={loading}
 					isLoadingText='Mengunduh'
 					colorScheme='cyan'
-					variant='outline'
-					borderColor='cyan.500'
+					variant='solid'
 					rounded='md'
 					mt={2}
+					leftIcon={<Icon as={<DownloadCloud size={18} />} mr={2} />}
 					_text={{ fontWeight: "semibold" }}
 					onPress={() => onDownload(file?.detail?.path)}
 				>
